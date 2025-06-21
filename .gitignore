@@ -9,6 +9,7 @@
 # production
 /build
 /package
+/dist
 
 # misc
 .DS_Store
@@ -21,3 +22,4 @@
 
 # secrets
 secrets.*.js
+
