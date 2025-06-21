@@ -1,10 +1,10 @@
 import { watchUrlChange } from "../utils/urlChangeWatcher";
 
-console.info('ChatGPT TOC content script is running');
+console.info("ChatGPT TOC content script is running");
 
 function extractTOCByQA(): QAGroup[] {
   const result: QAGroup[] = [];
-  const turns = Array.from(document.querySelectorAll('div.group\\/conversation-turn'));
+  const turns = Array.from(document.querySelectorAll("div.group\\/conversation-turn"));
   let tocIndex = 0;
 
   for (let i = 0; i < turns.length - 1; i++) {
@@ -16,46 +16,42 @@ function extractTOCByQA(): QAGroup[] {
 
     if (!userRole || !assistantRole) continue;
 
-    const question = userRole.querySelector('.whitespace-pre-wrap')?.textContent?.trim() || '';
+    const question = userRole.querySelector(".whitespace-pre-wrap")?.textContent?.trim() || "";
 
     const headings: TOCHeading[] = [];
     let currentH2: TOCHeading | null = null;
     let currentH3: TOCHeading | null = null;
 
-    assistantTurn.querySelectorAll('div.markdown h2, div.markdown h3, div.markdown h4').forEach((el) => {
+    assistantRole.querySelectorAll("div.markdown h2, div.markdown h3, div.markdown h4").forEach((el) => {
       const text = el.textContent?.trim();
       if (!text) return;
 
       const tag = el.tagName.toLowerCase();
       const tocId = `toc-${tocIndex++}`;
-
-      el.setAttribute('id', tocId);
-      el.setAttribute('data-toc-highlight', '');
+      el.setAttribute("id", tocId);
+      el.setAttribute("data-toc-highlight", "");
 
       const headingObj: TOCHeading = { title: text, id: tocId };
 
-      if (tag === 'h2') {
+      if (tag === "h2") {
         currentH2 = { ...headingObj, children: [] };
         headings.push(currentH2);
         currentH3 = null;
-      } else if (tag === 'h3' && currentH2) {
+      } else if (tag === "h3" && currentH2) {
         currentH3 = { ...headingObj, children: [] };
         currentH2.children!.push(currentH3);
-      } else if (tag === 'h4' && currentH3) {
+      } else if (tag === "h4" && currentH3) {
         currentH3.children!.push(headingObj);
-      } else if (tag === 'h3') {
+      } else if (tag === "h3") {
         currentH3 = { ...headingObj, children: [] };
         headings.push(currentH3);
-      } else if (tag === 'h4') {
+      } else if (tag === "h4") {
         headings.push(headingObj);
       }
     });
 
     if (headings.length > 0) {
-      result.push({
-        question,
-        headings,
-      });
+      result.push({ question, headings });
     }
 
     i++; // skip assistant turn
@@ -65,16 +61,16 @@ function extractTOCByQA(): QAGroup[] {
 }
 
 function waitForMarkdownAndExtractTOC() {
+  let debounceTimer: ReturnType<typeof setTimeout>;
+
   const observer = new MutationObserver(() => {
-    const markdowns = document.querySelectorAll('div.markdown');
-    if (markdowns.length > 0) {
-      observer.disconnect();
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => {
       const tocByQA = extractTOCByQA();
-      chrome.runtime.sendMessage({
-        type: 'TOC_DATA',
-        toc: tocByQA,
-      });
-    }
+
+      chrome.runtime.sendMessage({ type: "TOC_DATA", toc: tocByQA });
+      chrome.storage.local.set({ toc: tocByQA });
+    }, 500); // debounce
   });
 
   observer.observe(document.body, {
@@ -83,34 +79,27 @@ function waitForMarkdownAndExtractTOC() {
   });
 }
 
-// Khởi động ban đầu
+// 👉 Khởi động ban đầu
 waitForMarkdownAndExtractTOC();
 
-// Theo dõi URL thay đổi
+// 👉 Theo dõi thay đổi URL
 watchUrlChange(() => {
   chrome.storage.local.set({ toc: [] }, () => {
-    console.log('✅ Reset TOC data on URL change');
+    console.log("✅ Reset TOC data on URL change");
   });
 
-  chrome.runtime.sendMessage({
-    type: 'TOC_DATA',
-    toc: [],
-  });
-
-  waitForMarkdownAndExtractTOC();
+  chrome.runtime.sendMessage({ type: "TOC_DATA", toc: [] });
+  waitForMarkdownAndExtractTOC(); // Khởi tạo lại
 });
 
-// Xử lý SCROLL_TO_HEADING từ sidepanel
+// 👉 Xử lý scroll đến heading
 chrome.runtime.onMessage.addListener((request) => {
-  if (request.type === 'SCROLL_TO_HEADING' && request.id) {
+  if (request.type === "SCROLL_TO_HEADING" && request.id) {
     const el = document.getElementById(request.id);
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      el.style.transition = 'background-color 0.4s';
-      el.style.backgroundColor = 'rgba(255, 255, 0, 0.3)';
-      setTimeout(() => {
-        el.style.backgroundColor = '';
-      }, 800);
+      el.scrollIntoView({ behavior: "smooth", block: "center" });
+      el.setAttribute("data-scroll-target", "true");
+      setTimeout(() => el.removeAttribute("data-scroll-target"), 800);
     }
   }
 });
