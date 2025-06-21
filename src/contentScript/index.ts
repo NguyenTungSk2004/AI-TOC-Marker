@@ -2,6 +2,26 @@ import { watchUrlChange } from "../utils/urlChangeWatcher";
 
 console.info("ChatGPT TOC content script is running");
 
+function injectHighlightStyle() {
+  const style = document.createElement("style");
+  style.textContent = `
+    [data-toc-highlight] {
+      scroll-margin-top: 100px;
+    }
+
+    .toc-highlight {
+      background-color: rgba(255, 255, 100, 0.5);
+    }
+
+    .toc-highlight.fade-out {
+      transition: background-color 1.2s ease;
+      background-color: transparent;
+    }
+  `;
+  document.head.appendChild(style);
+}
+
+
 function extractTOCByQA(): QAGroup[] {
   const result: QAGroup[] = [];
   const turns = Array.from(document.querySelectorAll("div.group\\/conversation-turn"));
@@ -68,7 +88,7 @@ function waitForMarkdownAndExtractTOC() {
     debounceTimer = setTimeout(() => {
       const tocByQA = extractTOCByQA();
 
-      chrome.runtime.sendMessage({ type: "TOC_DATA", toc: tocByQA });
+      chrome.runtime.sendMessage({ type: "TOC_DATA_FROM_CONTENT", toc: tocByQA });
       chrome.storage.local.set({ toc: tocByQA });
     }, 500); // debounce
   });
@@ -79,6 +99,9 @@ function waitForMarkdownAndExtractTOC() {
   });
 }
 
+// 👉 Inject CSS cho hiệu ứng highlight
+injectHighlightStyle();
+
 // 👉 Khởi động ban đầu
 waitForMarkdownAndExtractTOC();
 
@@ -88,7 +111,7 @@ watchUrlChange(() => {
     console.log("✅ Reset TOC data on URL change");
   });
 
-  chrome.runtime.sendMessage({ type: "TOC_DATA", toc: [] });
+  chrome.runtime.sendMessage({ type: "TOC_DATA_FROM_CONTENT", toc: [] });
   waitForMarkdownAndExtractTOC(); // Khởi tạo lại
 });
 
@@ -98,8 +121,23 @@ chrome.runtime.onMessage.addListener((request) => {
     const el = document.getElementById(request.id);
     if (el) {
       el.scrollIntoView({ behavior: "smooth", block: "center" });
-      el.setAttribute("data-scroll-target", "true");
-      setTimeout(() => el.removeAttribute("data-scroll-target"), 800);
+
+      // Bỏ các lớp cũ nếu có
+      el.classList.remove("toc-highlight", "fade-out");
+      void el.offsetWidth; // force reflow
+
+      // Áp dụng highlight ngay lập tức
+      el.classList.add("toc-highlight");
+
+      // Sau 300ms, bắt đầu hiệu ứng mờ dần
+      setTimeout(() => {
+        el.classList.add("fade-out");
+      }, 300);
+
+      // Sau 2s thì xóa toàn bộ class
+      setTimeout(() => {
+        el.classList.remove("toc-highlight", "fade-out");
+      }, 2000);
     }
   }
 });

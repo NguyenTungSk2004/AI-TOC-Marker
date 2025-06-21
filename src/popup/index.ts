@@ -48,19 +48,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Decrement the count
   minusButton.addEventListener('click', function () {
-    if (count > 0) {
-      count--
-      countLabel.textContent = `${count}`
-      chrome.storage.sync.set({ count })
-      chrome.runtime.sendMessage({ type: 'TOC_DATA', count })
-    }
+
   })
 
   // Increment the count
   addButton.addEventListener('click', function () {
-    count++
-    countLabel.textContent = `${count}`
-    chrome.storage.sync.set({ count })
-    chrome.runtime.sendMessage({ type: 'TOC_DATA', count })
+
   })
 })

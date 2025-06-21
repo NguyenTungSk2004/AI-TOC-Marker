@@ -1,7 +1,7 @@
 console.log('✅ background is running');
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    if (request.type === 'TOC_DATA') {
+    if (request.type === 'TOC_DATA_FROM_CONTENT') {
         const toc = request.toc;
         chrome.storage.local.set({ toc: toc }, () => {
             console.log('Background đã nhận và lưu toc:', toc);
