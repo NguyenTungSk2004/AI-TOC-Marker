@@ -30,7 +30,9 @@
     "gulp-zip": "^6.0.0",
     "postcss": "^8.5.6",
     "prettier": "^3.0.3",
+    "rollup-plugin-javascript-obfuscator": "^1.0.4",
     "tailwindcss": "^3.4.17",
+    "terser": "^5.43.1",
     "typescript": "^5.2.2",
     "vite": "^5.4.10"
   }
