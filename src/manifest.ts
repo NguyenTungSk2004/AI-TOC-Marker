@@ -16,7 +16,7 @@ export default defineManifest({
     128: 'img/logo-128.png',
   },
   action: {
-    default_popup: 'popup.html',
+    // default_popup: 'sidepanel.html',
     default_icon: {
       16: 'img/icon_chatgpt_toc.jpg'
     },

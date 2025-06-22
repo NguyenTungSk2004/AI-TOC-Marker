@@ -24,5 +24,22 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   }
 });
 
+
+chrome.action.onClicked.addListener(async (tab) => {
+  if (!tab.id) return;
+
+  try {
+    await chrome.sidePanel.setOptions({
+      tabId: tab.id,
+      path: "../../sidepanel.html",
+      enabled: true,
+    });
+
+    await (chrome.sidePanel as any).open({ tabId: tab.id });
+  } catch (error) {
+    console.error("❌ Failed to open side panel:", error);
+  }
+});
+
 // Lắng nghe khi side panel được mở
-chrome.sidePanel.setPanelBehavior({ openPanelOnActionClick: false });
+chrome.sidePanel.setPanelBehavior({ openPanelOnActionClick: true });
