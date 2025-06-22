@@ -1,5 +1,5 @@
 import './index.css';
-import { setupTOCMessageHandler } from './messageHandler';
+import { setupTOCMessageHandler } from './core/messageHandler';
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = document.getElementById('app')!;

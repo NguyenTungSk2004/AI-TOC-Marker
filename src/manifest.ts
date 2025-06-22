@@ -29,8 +29,9 @@ export default defineManifest({
   },
   content_scripts: [
     {
-      matches: ['http://*/*', 'https://*/*'],
+      matches: ['*://chat.openai.com/*', '*://chatgpt.com/*'],
       js: ['src/contentScript/index.ts'],
+      run_at: "document_idle"
     },
   ],
   side_panel: {
@@ -42,7 +43,7 @@ export default defineManifest({
       matches: [],
     },
   ],
-  permissions: ['sidePanel', 'storage'],
+  permissions: ['sidePanel', 'storage', 'tabs'],
   chrome_url_overrides: {
     newtab: 'newtab.html',
   },

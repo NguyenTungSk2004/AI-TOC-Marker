@@ -1,5 +1,3 @@
-console.log('✅ background is running');
-
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.type === 'TOC_REQUEST') {
     chrome.storage.local.get(['toc'], (result) => {
@@ -9,11 +7,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
   if (request.type === 'TOC_DATA_FROM_CONTENT') {
     const toc = request.toc;
-    chrome.storage.local.set({ toc }, () => {
-      console.log('Background đã nhận và lưu TOC:', toc);
-    });
+    chrome.storage.local.set({ toc });
 
-    // Optional: vẫn có thể gửi nếu sidepanel đang mở
     chrome.runtime.sendMessage({ type: 'TOC_DATA', toc }, () => {
       if (chrome.runtime.lastError) {
         console.warn('[TOC] Sidepanel chưa sẵn sàng:', chrome.runtime.lastError.message);
@@ -24,22 +19,31 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   }
 });
 
-
-chrome.action.onClicked.addListener(async (tab) => {
-  if (!tab.id) return;
-
-  try {
-    await chrome.sidePanel.setOptions({
-      tabId: tab.id,
-      path: "../../sidepanel.html",
-      enabled: true,
-    });
-
-    await (chrome.sidePanel as any).open({ tabId: tab.id });
-  } catch (error) {
-    console.error("❌ Failed to open side panel:", error);
-  }
+chrome.runtime.onInstalled.addListener(() => {
+  chrome.sidePanel.setPanelBehavior({ openPanelOnActionClick: true });
 });
 
-// Lắng nghe khi side panel được mở
-chrome.sidePanel.setPanelBehavior({ openPanelOnActionClick: true });
+chrome.tabs.onActivated.addListener(async ({ tabId }) => {
+  const tab = await chrome.tabs.get(tabId);
+  const isChatGPT = tab.url?.includes("chat.openai.com") || tab.url?.includes("chatgpt.com");
+
+  if (isChatGPT) {
+    await chrome.sidePanel.setOptions({
+      tabId,
+      path: "sidepanel.html",
+      enabled: true, 
+    });
+
+  }
+  if(!isChatGPT) {
+    await chrome.sidePanel.setOptions({
+      tabId,
+      enabled: false,
+    });
+
+    await chrome.sidePanel.setOptions({
+      tabId,
+      path: "",
+    });
+  }
+});
