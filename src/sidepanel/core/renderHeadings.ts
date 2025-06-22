@@ -12,8 +12,6 @@ export function renderHeadings(headings: TOCHeading[]): HTMLUListElement {
 
     if (h.id) {
       span.onclick = () => {
-        console.log('[TOC] Sending scroll request to:', h.id);
-
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
           if (tabs[0]?.id) {
             chrome.tabs.sendMessage(tabs[0].id, {

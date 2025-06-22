@@ -14,9 +14,7 @@ setupScrollToHeading();
 
 // Reset TOC khi thay đổi URL
 watchUrlChange(() => {
-  chrome.storage.local.set({ toc: [] }, () => {
-    console.log("✅ Reset TOC data on URL change");
-  });
+  chrome.storage.local.set({ toc: [] });
   chrome.runtime.sendMessage({ type: "TOC_DATA_FROM_CONTENT", toc: [] });
   observeTOCUpdates();
 });

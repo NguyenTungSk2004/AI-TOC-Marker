@@ -10,19 +10,19 @@ export default defineManifest({
   version: packageData.version,
   manifest_version: 3,
   icons: {
-    16: 'img/logo-16.png',
-    32: 'img/logo-32.png',
-    48: 'img/logo-48.png',
-    128: 'img/logo-128.png',
+    16: 'img/icon-16.png',
+    32: 'img/icon-32.png',
+    48: 'img/icon-48.png',
+    128: 'img/icon-128.png',
   },
   action: {
     // default_popup: 'sidepanel.html',
     default_icon: {
-      16: 'img/icon_chatgpt_toc.jpg'
+      16: 'img/icon-16.png',
     },
   },
-  options_page: 'options.html',
-  devtools_page: 'devtools.html',
+  // options_page: 'options.html',
+  // devtools_page: 'devtools.html',
   background: {
     service_worker: 'src/background/index.ts',
     type: 'module',
@@ -39,12 +39,17 @@ export default defineManifest({
   },
   web_accessible_resources: [
     {
-      resources: ['img/logo-16.png', 'img/logo-32.png', 'img/logo-48.png', 'img/logo-128.png', 'img/icon_chatgpt_toc.jpg'],
+      resources: [
+        'img/icon-16.png',
+        'img/icon-32.png',
+        'img/icon-48.png',
+        'img/icon-128.png',
+      ],
       matches: [],
     },
   ],
   permissions: ['sidePanel', 'storage', 'tabs'],
-  chrome_url_overrides: {
-    newtab: 'newtab.html',
-  },
+  // chrome_url_overrides: {
+  //   newtab: 'newtab.html',
+  // },
 })
