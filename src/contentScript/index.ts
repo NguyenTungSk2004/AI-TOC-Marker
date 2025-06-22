@@ -14,7 +14,13 @@ setupScrollToHeading();
 
 // Reset TOC khi thay đổi URL
 watchUrlChange(() => {
-  chrome.storage.local.set({ toc: [] });
-  chrome.runtime.sendMessage({ type: "TOC_DATA_FROM_CONTENT", toc: [] });
+  try{
+    if (chrome.runtime?.id) {
+      chrome.storage.local.set({ toc: [] });
+      chrome.runtime.sendMessage({ type: "TOC_DATA_FROM_CONTENT", toc: [] });
+    }
+  }catch (error) {
+    console.error("[TOC] Lỗi khi reset TOC:", error);
+  }
   observeTOCUpdates();
 });

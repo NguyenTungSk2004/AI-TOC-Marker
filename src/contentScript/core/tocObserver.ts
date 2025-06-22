@@ -7,8 +7,14 @@ export function observeTOCUpdates() {
     clearTimeout(debounceTimer);
     debounceTimer = setTimeout(() => {
       const toc = extractTOCByQA();
-      chrome.runtime.sendMessage({ type: "TOC_DATA_FROM_CONTENT", toc });
-      chrome.storage.local.set({ toc });
+      try{
+        if (chrome.runtime?.id) {
+          chrome.runtime.sendMessage({ type: "TOC_DATA_FROM_CONTENT", toc });
+          chrome.storage.local.set({ toc });
+        }
+      }catch (error) {
+        console.error("[TOC] Lỗi khi gửi TOC:", error);
+      }
     }, 500);
   });
 
