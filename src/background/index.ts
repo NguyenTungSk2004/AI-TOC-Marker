@@ -1,7 +1,11 @@
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.type === 'TOC_REQUEST') {
     chrome.storage.local.get(['toc'], (result) => {
-      chrome.runtime.sendMessage({ type: 'TOC_DATA', toc: result.toc || [] });
+      try{
+          chrome.runtime.sendMessage({ type: 'TOC_DATA', toc: result.toc || [] });
+      }catch (error) {
+        console.warn('[TOC] Không thể gửi dữ liệu TOC:', error);
+      }
     });
   }
 
@@ -9,11 +13,15 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     const toc = request.toc;
     chrome.storage.local.set({ toc });
 
-    chrome.runtime.sendMessage({ type: 'TOC_DATA', toc }, () => {
+    try {
+      chrome.runtime.sendMessage({ type: 'TOC_DATA', toc }, () => {
       if (chrome.runtime.lastError) {
         console.warn('[TOC] Sidepanel chưa sẵn sàng:', chrome.runtime.lastError.message);
       }
-    });
+      });
+    } catch (error) {
+      console.warn('[TOC] Không thể gửi dữ liệu TOC:', error);
+    }
 
     sendResponse({ status: 'received' });
   }
