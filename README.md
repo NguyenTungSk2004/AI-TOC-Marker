@@ -7,11 +7,9 @@
 ## 📥 Released Versions
 
 You can download ready-to-use packaged versions of the extension from the [`package/`](./package) folder in this repository.
-
-| Version | Release Notes                  | Download                                                                |
-| ------- | ------------------------------ | ----------------------------------------------------------------------- |
-| 0.0.1   | Minor improvements & bug fixes | [`AI-TOC-Marker-0.0.1.zip`](./package/AI-TOC-Marker-0.0.1.zip?raw=true) |
-| 0.0.0   | Initial test version           | [`AI-TOC-Marker-0.0.0.zip`](./package/AI-TOC-Marker-0.0.0.zip?raw=true) |
+| Version | Release Notes      | Download                                                                 |
+| ------- | ----------------- | ------------------------------------------------------------------------ |
+| 0.0.1   | First release     | [⬇ Download AI-TOC-Marker v0.0.1](https://github.com/NguyenTungSK2004/AI-TOC-Marker/releases/download/v0.0.1/AI-TOC-Marker-0.0.1.zip) |
 
 ### 🧪 How to Use
 
