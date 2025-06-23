@@ -39,7 +39,7 @@ Bạn có thể tải tiện ích đã đóng gói sẵn tại đây:
 
 ## 📸 Hình ảnh minh họa tính năng
 
-![Gif giới thiệu tính năng AI TOC Marker](https://github.com/NguyenTungSk2004/AI-TOC-Marker/public/demo-guide.gif)
+![Gif giới thiệu tính năng AI TOC Marker](https://github.com/NguyenTungSk2004/AI-TOC-Marker/blob/main/public/img/demo-guide.gif)
 
 > *Gif minh họa các tính năng nổi bật và cách sử dụng tiện ích mở rộng AI TOC Marker.*
 
