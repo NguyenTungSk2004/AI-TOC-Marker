@@ -1,118 +1,98 @@
-# AI TOC Marker – ChatGPT TOC Extension
+# AI TOC Marker – Tiện ích tạo mục lục cho ChatGPT
 
-> A Chrome Extension tool built with **Vite + Vanilla JS**, powered by **Manifest v3**
-
----
-
-## 📥 Released Versions
-
-You can download ready-to-use packaged versions of the extension from the [`package/`](./package) folder in this repository.
-| Version | Release Notes      | Download                                                                 |
-| ------- | ----------------- | ------------------------------------------------------------------------ |
-| 0.0.1   | First release     | [⬇ Download AI-TOC-Marker v0.0.1](https://github.com/NguyenTungSK2004/AI-TOC-Marker/releases/download/v0.0.1/AI-TOC-Marker-0.0.1.zip) |
-
-### 🧪 How to Use
-
-After downloading a version:
-
-1. Download the `.zip` file of the version you want
-2. Extract the zip
-3. Open Chrome → `chrome://extensions`
-4. Enable **Developer Mode**
-5. Click **"Load unpacked"** and select the extracted folder
-
-👉 After extraction, open the `HOW-TO-INSTALL.html` file included in the folder to view a step-by-step installation guide.
-
-👉 This avoids having to clone and build the code yourself.
+**AI TOC Marker** là tiện ích mở rộng trình duyệt Chrome giúc bạn **đánh dấu và điều hướng các tiêu đề (heading)** trong đoạn hội thoại của **ChatGPT**. Tiện ích này đặc biệt hữu ích khi bạn làm việc với nội dung dài hoặc muốn tìm nhanh phần cần thiết trong câu trả lời của AI.
 
 ---
 
-## 📦 Versioning Convention
+## 🔍 Tính năng chính
 
-This project follows **Semantic Versioning (SemVer)**:
-
-```
-MAJOR.MINOR.PATCH
-```
-
-* `0.0.x`: internal testing, bugfixes
-* `0.x.0`: new feature (beta)
-* `1.0.0`: stable release
-* `x.y.z`: later versions with features, improvements, or bugfixes
+* ✅ Tự động nhận diện các tiêu đề như H1, H2 trong phản hồi của ChatGPT
+* ✅ Đánh dấu và làm nổi bật các mục chính trong cuộc hội thoại
+* ✅ Hỗ trợ điều hướng nhanh đến phần mong muốn
+* ✅ Hoạt động độc lập, không cần tích hợp API
+* ✅ Cài đặt dễ dàng, mã nguồn mở hoàn toàn
 
 ---
 
-## 🛠️ Installing (for Developers)
+## 📅 Tải và sử dụng
 
-1. Make sure you have `Node.js` >= **14**
-2. Configure your extension name, description, etc. in `src/manifest.json`
-3. Run:
+Bạn có thể tải tiện ích đã đóng gói sẵn tại đây:
+
+| Phiên bản | Ghi chú       | Tải về                                                                                                                              |
+| --------- | ------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| 0.0.1     | Phiên bản đầu | [⬇ Tải về AI-TOC-Marker v0.0.1](https://github.com/NguyenTungSk2004/AI-TOC-Marker/releases/download/v0.0.1/AI-TOC-Marker-0.0.1.zip) |
+
+---
+
+## 🧪 Cách cài đặt nhanh
+
+1. Tải file `.zip` từ link trên
+2. Giải nén file
+3. Mở trình duyệt Chrome, truy cập `chrome://extensions`
+4. Bật chế độ **Developer Mode**
+5. Bấm nút **Load unpacked** và chọn thư mục đã giải nén
+6. Hoàn tất! ChatGPT sẽ tự động được đánh dấu các tiêu đề khi bạn mở
+
+👈 Trong thư mục tải về có file `HOW-TO-INSTALL.html` hướng dẫn chi tiết kèm hình ảnh.
+
+---
+
+## 📸 Hình ảnh minh họa *(tùy chọn)*
+
+> *(Bạn có thể thêm sau nếu muốn giới thiệu trực quan hơn.)*
+
+---
+
+## ❓ Dành cho ai?
+
+* Người dùng ChatGPT thường xuyên
+* Sinh viên, giáo viên, nhân viên văn phòng
+* Những ai cần lưu trữ, đọc lại hội thoại có cấu trúc
+* Lập trình viên muốn kiểm tra nội dung AI dàng nhiều phần
+
+---
+
+## 💻 Dành cho lập trình viên
+
+Dự án được xây dựng bằng:
+
+* `Vite + Vanilla JS`
+* `Manifest V3`
+* Hệ thống đóng gói hỗ trợ zip tự động (`npm run zip`)
+
+Cài đặt local:
 
 ```bash
 npm install
-```
-
----
-
-## 🚀 Developing
-
-### Chrome Extension Developer Mode
-
-```bash
 npm run dev
 ```
 
-Then:
-
-1. Open Chrome → `chrome://extensions`
-2. Enable **Developer Mode**
-3. Click **"Load unpacked"**
-4. Select the `chatgpt-toc/build` folder
-
-### Front-End Preview (optional)
-
-For previewing HTML pages:
-
-* Root: `http://localhost:3000/`
-* Popup: `http://localhost:3000/popup.html`
-* Options: `http://localhost:3000/options.html`
-
----
-
-## 📦 Packing
-
-After development is complete, build your extension with:
+Build:
 
 ```bash
 npm run build
-```
-
-To package it into a zip file for submission:
-
-```bash
 npm run zip
 ```
 
-This will create a file like:
-`build/AI-TOC-Marker-1.0.0.zip`
-
 ---
 
-## 📤 Publishing
+## 📦 Công cụ scaffold
 
-1. Open the [Chrome Web Store Developer Dashboard](https://developer.chrome.com/webstore/publish)
-2. Submit the `.zip` file from `build/`
-3. Follow the publishing process
-
----
-
-## 🧰 Tools & Scaffolding
-
-This extension was generated by:
+Tiện ích được tạo bằng scaffold:
 👉 [create-chrome-ext](https://github.com/guocaoyi/create-chrome-ext)
 
 ---
 
-## 👨‍💻 Author
+## 👨‍💻 Tác giả
 
-**NguyenTungSk**
+Phát triển bởi **NguyenTungSk**
+🔗 [Trang GitHub](https://github.com/NguyenTungSk2004/AI-TOC-Marker)
+
+---
+
+## 📢 Góp ý hoặc đóng góp
+
+Nếu bạn muốn góp ý, phát hiện lỗi hoặc đề xuất tính năng mới:
+
+* Mở issue trên GitHub
+* Hoặc gửi pull request nếu bạn muốn đóng góp trực tiếp
