@@ -8,8 +8,9 @@
 
 # production
 /build
-/package
 /dist
+*/HOW-TO-INSTALL.html
+*/install-assets
 
 # misc
 .DS_Store
