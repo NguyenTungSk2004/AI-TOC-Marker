@@ -36,10 +36,11 @@ Bạn có thể tải tiện ích đã đóng gói sẵn tại đây:
 👈 Trong thư mục tải về có file `HOW-TO-INSTALL.html` hướng dẫn chi tiết kèm hình ảnh.
 
 ---
+## 📸 Hình ảnh minh họa tính năng
 
-## 📸 Hình ảnh minh họa *(tùy chọn)*
+![Gif giới thiệu các tính năng của AI TOC Marker](https://github.com/NguyenTungSk2004/AI-TOC-Marker/public/demo-guide.gif)
 
-> *(Bạn có thể thêm sau nếu muốn giới thiệu trực quan hơn.)*
+> *Gif minh họa các tính năng nổi bật và cách sử dụng tiện ích mở rộng AI TOC Marker.*
 
 ---
 
