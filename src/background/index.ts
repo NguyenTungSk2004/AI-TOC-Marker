@@ -55,3 +55,23 @@ chrome.tabs.onActivated.addListener(async ({ tabId }) => {
     });
   }
 });
+
+chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+  if (changeInfo.status === 'complete' && tab.url) {
+    const isChatGPT = tab.url.includes("chat.openai.com") || tab.url.includes("chatgpt.com");
+
+    if (isChatGPT) {
+      chrome.sidePanel.setOptions({
+        tabId,
+        path: "sidepanel.html",
+        enabled: true
+      });
+    } else {
+      chrome.sidePanel.setOptions({
+        tabId,
+        enabled: false
+      });
+    }
+  }
+});
+
