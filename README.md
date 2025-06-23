@@ -24,7 +24,7 @@ Bạn có thể tải tiện ích đã đóng gói sẵn tại đây:
 
 ---
 
-## 🧪 Cách cài đặt nhanh
+## 🥪 Cách cài đặt nhanh
 
 1. Tải file `.zip` từ link trên
 2. Giải nén file
@@ -36,9 +36,10 @@ Bạn có thể tải tiện ích đã đóng gói sẵn tại đây:
 👈 Trong thư mục tải về có file `HOW-TO-INSTALL.html` hướng dẫn chi tiết kèm hình ảnh.
 
 ---
+
 ## 📸 Hình ảnh minh họa tính năng
 
-![Gif giới thiệu các tính năng của AI TOC Marker](https://github.com/NguyenTungSk2004/AI-TOC-Marker/public/demo-guide.gif)
+![Gif giới thiệu tính năng AI TOC Marker](https://github.com/NguyenTungSk2004/AI-TOC-Marker/public/demo-guide.gif)
 
 > *Gif minh họa các tính năng nổi bật và cách sử dụng tiện ích mở rộng AI TOC Marker.*
 
@@ -84,7 +85,7 @@ Tiện ích được tạo bằng scaffold:
 
 ---
 
-## 👨‍💻 Tác giả
+## 👨‍💼 Tác giả
 
 Phát triển bởi **NguyenTungSk**
 🔗 [Trang GitHub](https://github.com/NguyenTungSk2004/AI-TOC-Marker)
