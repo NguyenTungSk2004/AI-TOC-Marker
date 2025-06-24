@@ -14,7 +14,7 @@
 
 ---
 
-## 📅 Tải và sử dụng
+## 📅 Tải và sử dụng <img src="https://img.shields.io/github/downloads/NguyenTungSk2004/AI-TOC-Marker/total" alt="Tổng số lượt tải" style="vertical-align: middle;" />
 
 Bạn có thể tải tiện ích đã đóng gói sẵn tại đây:
 
