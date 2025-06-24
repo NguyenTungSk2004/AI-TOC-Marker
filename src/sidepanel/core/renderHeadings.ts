@@ -11,7 +11,8 @@ export function renderHeadings(headings: TOCHeading[]): HTMLUListElement {
       'inline-block text-sm text-gray-300 hover:text-white px-2 py-1 cursor-pointer hover:bg-gray-700 rounded transition';
 
     if (h.id) {
-      span.onclick = () => {
+      span.onclick = (e) => {
+        e.stopPropagation();
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
           if (tabs[0]?.id) {
             chrome.tabs.sendMessage(tabs[0].id, {

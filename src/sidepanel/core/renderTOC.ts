@@ -2,7 +2,8 @@ import { renderHeadings } from './renderHeadings';
 
 function createTitle(): HTMLElement {
   const container = document.createElement('div');
-  container.className = 'text-center mb-2';
+  container.className =
+    'fixed top-0 left-0 w-full bg-gray-900 text-center p-5 z-50 border-b border-gray-700';
 
   const title = document.createElement('h2');
   title.textContent = 'Conversation TOC';
@@ -27,6 +28,7 @@ function createTitle(): HTMLElement {
   container.appendChild(survey);
   return container;
 }
+
 
 function createDivider(): HTMLDivElement {
   const divider = document.createElement('hr');
@@ -59,20 +61,20 @@ function createPrefixElement(index: number): HTMLSpanElement {
 }
 
 export function renderTOC(main: HTMLElement, data: QAGroup[]) {
+  let lastElement: HTMLElement | null = null;
+  let lastHeading: HTMLElement | null = null;
+  const allHeadingLists: HTMLElement[] = [];
+
   main.innerHTML = '';
 
   main.appendChild(createTitle());
   main.appendChild(createDivider());
+  main.className = 'h-full p-3 space-y-3 mt-20';
 
-  const reversedData = [...data].reverse();
-  const total = reversedData.length;
-
-  reversedData.forEach((group, indexReversed) => {
-    const displayIndex = total - indexReversed; // QN → Q1
-
+  data.forEach((group, index) => {
     const groupEl = createGroupElement();
     const questionEl = createQuestionElement(group.question);
-    const prefix = createPrefixElement(displayIndex);
+    const prefix = createPrefixElement(index+1);
 
     const truncatedText =
       group.question.length > 100
@@ -88,8 +90,29 @@ export function renderTOC(main: HTMLElement, data: QAGroup[]) {
     groupEl.appendChild(questionEl);
 
     const headingsList = renderHeadings(group.headings);
+    headingsList.style.display = 'none'; 
+
     groupEl.appendChild(headingsList);
+    allHeadingLists.push(headingsList);
+
+    lastHeading = headingsList;
+    lastElement = groupEl;
+
+    questionEl.style.cursor = 'pointer';
+    questionEl.addEventListener('click', () => {
+      const isVisible = headingsList.style.display === 'block';
+      headingsList.style.display = isVisible ? 'none' : 'block';
+    });
 
     main.appendChild(groupEl);
+    lastElement = groupEl;
   });
+  
+  requestAnimationFrame(() => {
+    if (lastElement && lastHeading) {
+      lastHeading.style.display = 'block';
+      lastElement.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  });
+
 }
