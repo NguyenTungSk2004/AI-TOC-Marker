@@ -2,24 +2,27 @@
 
 **AI TOC Marker** là tiện ích mở rộng cho trình duyệt **Chrome** giúp bạn **đánh dấu và điều hướng các tiêu đề (heading)** trong cuộc hội thoại của **ChatGPT**. Rất hữu ích khi làm việc với nội dung dài, cần tìm nhanh thông tin hoặc tổ chức lại cấu trúc câu trả lời.
 
+👉 **Xem hướng dẫn chi tiết & demo tại:** [https://nguyentungsk2004.github.io/AI-TOC-Marker/](https://nguyentungsk2004.github.io/AI-TOC-Marker/)
+
 ---
 
 ## 🚀 Tính năng nổi bật
 
 * 🔎 **Tự động nhận diện** tiêu đề như `H1`, `H2` trong phản hồi ChatGPT
 * 🧭 **Điều hướng nhanh** đến phần mong muốn trong hội thoại
-* 🎯 **Đánh dấu & làm nổi bật** các mục chính rõ ràng
-* 🔒 **Hoạt động cục bộ** – không cần tích hợp API hay tài khoản
+* 🌟 **Đánh dấu & làm nổi bật** các mục chính rõ ràng
+* 🔐 **Hoạt động cục bộ** – không cần tích hợp API hay tài khoản
 * 💡 **Dễ cài đặt** – chỉ vài bước là xong
-* 🧑‍💻 **Mã nguồn mở** – bạn có thể tuỳ biến hoặc đóng góp
+* 🧑‍💻 **Mã nguồn mở** – bạn có thể tuý biến hoặc đóng góp
+* 📉 **Giao diện gọn gàng, tối ưu cho dark mode** (light mode sẽ hỗ trợ trong các bản cập nhật tiếp theo)
 
 ---
 
-## 🎬 Demo tính năng
+## 🎮 Demo tính năng
 
 ![Gif giới thiệu tính năng AI TOC Marker](https://github.com/NguyenTungSk2004/AI-TOC-Marker/blob/main/public/img/demo-guide.gif)
 
-> 🎥 *Minh họa AI TOC Marker tự động đánh dấu và điều hướng tiêu đề trong cuộc hội thoại ChatGPT.*
+> 🎥 *Minh hoạ AI TOC Marker tự động đánh dấu và điều hướng tiêu đề trong cuộc hội thoại ChatGPT.*
 
 ---
 
@@ -36,13 +39,14 @@
 
 ---
 
-## 📥 Tải xuống & Sử dụng
+## 📅 Tải xuống & Sử dụng
 
 <img src="https://img.shields.io/github/downloads/NguyenTungSk2004/AI-TOC-Marker/total" alt="Tổng số lượt tải" style="vertical-align: middle; margin-bottom: 4px;" />
 
-| 📌 Phiên bản | 📝 Ghi chú         | 🔗 Link tải                                                                                                                       |
-| ------------ | ------------------ | --------------------------------------------------------------------------------------------------------------------------------- |
-| `0.0.1`      | Phiên bản đầu tiên | [⬇️ Tải AI-TOC-Marker v0.0.1](https://github.com/NguyenTungSk2004/AI-TOC-Marker/releases/download/v0.0.1/AI-TOC-Marker-0.0.1.zip) |
+| 📌 Phiên bản | 📝 Ghi chú                                          | 🔗 Link tải                                                                                                                       |
+| ------------ | --------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `0.1.0`      | Giao diện mới, tìm kiếm nâng cao, nhiều cải tiến UX | [⬇️ Tải AI-TOC-Marker v0.1.0](https://github.com/NguyenTungSk2004/AI-TOC-Marker/releases/download/v0.1.0/AI-TOC-Marker-0.1.0.zip) |
+| `0.0.1`      | Phiên bản đầu tiên                                  | [⬇️ Tải AI-TOC-Marker v0.0.1](https://github.com/NguyenTungSk2004/AI-TOC-Marker/releases/download/v0.0.1/AI-TOC-Marker-0.0.1.zip) |
 
 ---
 
@@ -61,7 +65,7 @@ Dự án được xây dựng bằng:
 
 * ⚡ `Vite + Vanilla JS`
 * 📦 `Manifest V3`
-* 🔁 Script đóng gói tự động: `npm run zip`
+* 🔀 Script đóng gói tự động: `npm run zip`
 
 ### 🧪 Cài đặt local:
 
@@ -85,7 +89,7 @@ npm run zip
 
 ---
 
-## 🙋 Tác giả & Liên hệ
+## 🧓 Tác giả & Liên hệ
 
 👤 Phát triển bởi **NguyenTungSk**
 🔗 [GitHub cá nhân](https://github.com/NguyenTungSk2004/AI-TOC-Marker)
