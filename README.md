@@ -1,20 +1,31 @@
 # 🌟 AI TOC Marker – Tiện ích tạo mục lục cho ChatGPT
 
-**AI TOC Marker** là tiện ích mở rộng cho trình duyệt **Chrome** giúp bạn **đánh dấu và điều hướng các tiêu đề (heading)** trong cuộc hội thoại của **ChatGPT**. Rất hữu ích khi làm việc với nội dung dài, cần tìm nhanh thông tin hoặc tổ chức lại cấu trúc câu trả lời.
+**AI TOC Marker** là tiện ích mở rộng cho trình duyệt **Chrome** giúc bạn **đánh dấu và điều hướng các tiêu đề (heading)** trong cuộc hội thoại của **ChatGPT**. Rất hữu ích khi làm việc với nội dung dài, cần tìm nhanh thông tin hoặc tổ chức lại cấu trúc câu trả lời.
 
-👉 **Xem hướng dẫn chi tiết & demo tại:** [https://nguyentungsk2004.github.io/AI-TOC-Marker/](https://nguyentungsk2004.github.io/AI-TOC-Marker/)
+🔗 **Xem hướng dẫn chi tiết & demo tại:** [https://nguyentungsk2004.github.io/AI-TOC-Marker/](https://nguyentungsk2004.github.io/AI-TOC-Marker/)
 
 ---
 
 ## 🚀 Tính năng nổi bật
 
 * 🔎 **Tự động nhận diện** tiêu đề như `H1`, `H2` trong phản hồi ChatGPT
-* 🧭 **Điều hướng nhanh** đến phần mong muốn trong hội thoại
+* 🧽 **Điều hướng nhanh** đến phần mong muốn trong hội thoại
 * 🌟 **Đánh dấu & làm nổi bật** các mục chính rõ ràng
 * 🔐 **Hoạt động cục bộ** – không cần tích hợp API hay tài khoản
 * 💡 **Dễ cài đặt** – chỉ vài bước là xong
 * 🧑‍💻 **Mã nguồn mở** – bạn có thể tuý biến hoặc đóng góp
 * 📉 **Giao diện gọn gàng, tối ưu cho dark mode** (light mode sẽ hỗ trợ trong các bản cập nhật tiếp theo)
+
+---
+
+## ✨ Tính năng mới trong v0.1.0
+
+* 🎨 **Giao diện mới gọn gàng** – tối ưu cho dark mode, sắp xếp nút rõ ràng
+* 🔍 **Tìm kiếm thông minh** – đếm kết quả, điều hướng trước/sau, highlight nội dung khớp
+* 📌 **Danh sách tiêu đề có thể thu gọn/mở rộng** – dễ theo dõi hơn với nhiều heading
+* 🧭 **Nút điều hướng nhanh** – Lên đầu / Xuống cuối cuộc hội thoại
+* ⚙️ **Tối ưu hiệu suất và logic DOM** – tránh duplicate, xử lý heading lồng nhau
+* 🧩 **Tái cấu trúc mã nguồn** – chia module, dễ bảo trì
 
 ---
 
@@ -39,7 +50,7 @@
 
 ---
 
-## 📅 Tải xuống & Sử dụng
+## 📥 Tải xuống & Sử dụng
 
 <img src="https://img.shields.io/github/downloads/NguyenTungSk2004/AI-TOC-Marker/total" alt="Tổng số lượt tải" style="vertical-align: middle; margin-bottom: 4px;" />
 
@@ -83,13 +94,13 @@ npm run zip
 
 ---
 
-## 🧱 Dự án khởi tạo bằng scaffold
+## 🪝 Dự án khởi tạo bằng scaffold
 
 ✨ Sử dụng scaffold: [create-chrome-ext](https://github.com/guocaoyi/create-chrome-ext)
 
 ---
 
-## 🧓 Tác giả & Liên hệ
+## 🡓 Tác giả & Liên hệ
 
 👤 Phát triển bởi **NguyenTungSk**
 🔗 [GitHub cá nhân](https://github.com/NguyenTungSk2004/AI-TOC-Marker)
