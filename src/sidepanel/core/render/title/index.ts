@@ -3,6 +3,7 @@ import { createTocSearchInput } from './searchControls';
 
 export function createTitle(): HTMLElement {
   const container = document.createElement('div');
+  container.id = 'toc-header';
   container.className =
     'fixed top-0 left-0 w-full bg-gray-900 text-white z-50 border-b border-gray-700 shadow-md';
 

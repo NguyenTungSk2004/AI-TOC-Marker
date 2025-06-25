@@ -7,8 +7,8 @@ export function renderTOC(main: HTMLElement, data: QAGroup[]) {
   main.innerHTML = '';
   main.appendChild(createTitle());
 
-  const headerEl = document.querySelector('.fixed');
-  const offset = headerEl ? headerEl.getBoundingClientRect().height : 160;
+  const headerEl = document.getElementById('toc-header');
+  const offset = headerEl.getBoundingClientRect().height - 20;
   main.className = `h-full p-3 space-y-3`;
   main.style.marginTop = `${offset}px`;
 
