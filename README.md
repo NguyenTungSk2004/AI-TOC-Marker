@@ -22,8 +22,9 @@
 
 * 🎨 **Giao diện mới gọn gàng** – tối ưu cho dark mode, sắp xếp nút rõ ràng
 * 🔍 **Tìm kiếm thông minh** – đếm kết quả, điều hướng trước/sau, highlight nội dung khớp
-* 📌 **Danh sách tiêu đề có thể thu gọn/mở rộng** – dễ theo dõi hơn với nhiều heading
 * 🧭 **Nút điều hướng nhanh** – Lên đầu / Xuống cuối cuộc hội thoại
+* 📜 **Tự động cuộn đến câu hỏi mới** – giúp bạn luôn theo dõi phần hội thoại mới nhất
+* 📌 **Danh sách tiêu đề có thể thu gọn/mở rộng** – dễ theo dõi hơn với nhiều heading
 * ⚙️ **Tối ưu hiệu suất và logic DOM** – tránh duplicate, xử lý heading lồng nhau
 * 🧩 **Tái cấu trúc mã nguồn** – chia module, dễ bảo trì
 
