@@ -107,6 +107,18 @@ npm run zip
 🔗 [GitHub cá nhân](https://github.com/NguyenTungSk2004/AI-TOC-Marker)
 
 ---
+---
+
+## ⚖️ Giấy phép
+
+**AI TOC Marker** được phát hành theo giấy phép [Apache License 2.0](./LICENSE).
+
+Điều đó có nghĩa là bạn được:
+- ✅ Tự do sử dụng, chỉnh sửa, phân phối lại mã nguồn
+- ✅ Tích hợp vào sản phẩm thương mại
+- ✅ An tâm nhờ có điều khoản bảo vệ bản quyền & sáng chế
+
+> Xem chi tiết trong [LICENSE](./LICENSE)
 
 ## 📬 Góp ý & Đóng góp
 
