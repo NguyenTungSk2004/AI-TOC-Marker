@@ -22,10 +22,10 @@ export function createButtonGroupContainer(): {
   right: HTMLDivElement;
 } {
   const left = document.createElement('div');
-  left.className = 'flex gap-2';
+  left.className = 'flex items-center gap-2';
 
   const right = document.createElement('div');
-  right.className = 'flex gap-2';
+  right.className = 'flex items-center gap-2';
 
   return { left, right };
 }

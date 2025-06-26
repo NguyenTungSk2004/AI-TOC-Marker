@@ -1,4 +1,4 @@
-import { showError, showInfo, showSuccess, showWarning } from "../../../../../utils/toast.utils";
+import { showInfo } from "../../../../../utils/toast.utils";
 
 export function setupSearchLogic({
   input,
