@@ -42,7 +42,7 @@ export function setupSearchLogic({
             }
 
             const headerEl = document.getElementById('toc-header');
-            const offset = headerEl.getBoundingClientRect().height + 200;
+            const offset = headerEl.getBoundingClientRect().height;
 
             requestAnimationFrame(() => {
                 const top = el.getBoundingClientRect().top + window.scrollY - offset;
