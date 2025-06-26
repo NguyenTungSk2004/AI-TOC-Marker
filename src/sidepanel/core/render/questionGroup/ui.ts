@@ -1,6 +1,7 @@
 export function createGroupContainer(): HTMLDivElement {
   const container = document.createElement('div');
-  container.className = 'bg-gray-800 border border-gray-700 rounded p-3 shadow space-y-2';
+  container.className = 'toc-group';
+  container.className += 'bg-gray-800 border border-gray-700 rounded p-3 shadow space-y-2';
   return container;
 }
 

@@ -35,5 +35,8 @@
     "terser": "^5.43.1",
     "typescript": "^5.2.2",
     "vite": "^5.4.10"
+  },
+  "dependencies": {
+    "notyf": "^3.10.0"
   }
 }

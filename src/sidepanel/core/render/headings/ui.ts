@@ -6,8 +6,9 @@ export function createHeadingsList(headings: TOCHeading[]): HTMLUListElement {
 
   headings.forEach((h) => {
     const li = document.createElement('li');
-    const span = document.createElement('span');
+    li.setAttribute('data-group-key', h.id || h.title);
 
+    const span = document.createElement('span');
     span.textContent = h.title;
     span.className =
       'inline-block text-sm text-gray-300 hover:text-white px-2 py-1 cursor-pointer hover:bg-gray-700 rounded transition';

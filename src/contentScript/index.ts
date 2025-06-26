@@ -1,7 +1,7 @@
 import { injectHighlightStyle } from "./utils/injectHighlightStyle";
 import { observeTOCUpdates } from "./core/tocObserver";
 import { setupScrollToHeading } from "./core/scrollToHeading";
-import { watchUrlChange } from "../utils/urlChangeWatcher";
+import { watchUrlChange } from "../utils/urlChangeWatcher.utils";
 
 // Inject CSS
 injectHighlightStyle();
