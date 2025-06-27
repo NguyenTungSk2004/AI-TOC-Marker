@@ -1,16 +1,32 @@
 import { tocState } from '../state/tocState';
+import { createFooter } from './footer';
+import { createHeader } from './header';
 import { createQuestionGroup } from './questionGroup';
-import { createTitle } from './title';
 
 export function renderTOC(main: HTMLElement, data: QAGroup[]) {
   tocState.load();
   main.innerHTML = '';
-  main.appendChild(createTitle());
+  main.className = `h-full p-3 space-y-3`;
+  
+  createHeader(main);
+  createFooter(main);
 
   const headerEl = document.getElementById('toc-header');
-  const offset = headerEl.getBoundingClientRect().height - 35;
-  main.className = `h-full p-3 space-y-3`;
-  main.style.marginTop = `${offset}px`;
+  const surveyEl = document.getElementById('toc-survey');
+  if (headerEl){
+    requestAnimationFrame(() => {
+      const offset = headerEl.getBoundingClientRect().height - 30;
+      main.style.marginTop = `${offset}px`;
+    });
+  }
+  if (surveyEl) {
+    requestAnimationFrame(() => {
+      const surveyHeight = surveyEl.getBoundingClientRect().height - 20;
+      main.style.marginBottom = `${surveyHeight}px`;
+    });
+  }
+     
+  // main.style.marginBottom = 
 
   let lastGroupEl: HTMLElement | null = null;
   let lastHeadingsEl: HTMLElement | null = null;
