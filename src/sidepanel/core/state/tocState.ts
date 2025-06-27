@@ -2,34 +2,36 @@
 const STORAGE_KEY = 'expandedGroups';
 
 export const tocState = {
-    expandedGroups: new Set<string>(),
+  expandedGroups: new Set<string>(),
 
-    load() {
-        const raw = localStorage.getItem(STORAGE_KEY);
-        if (raw) {
-        try {
-            JSON.parse(raw).forEach((key: string) => this.expandedGroups.add(key));
-        } catch {}
-        }
-    },
-
-    save() {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify([...this.expandedGroups]));
-    },
-
-    toggle(key: string, isOpen: boolean) {
-        if (isOpen) this.expandedGroups.add(key);
-        else this.expandedGroups.delete(key);
-        this.save();
-    },
-
-    closeAll() {
-        this.expandedGroups.clear();
-        this.save();
-    },
-    
-    openAll(keys: string[]) {
-        keys.forEach(k => this.expandedGroups.add(k));
-        this.save();
+  load: () => {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      try {
+        JSON.parse(raw).forEach((key: string) => tocState.expandedGroups.add(key));
+      } catch {}
     }
+  },
+
+  save: () => {
+    const arr = Array.from(tocState.expandedGroups);
+    console.log('[TOC] Lưu expandedGroups vào storage:', arr);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(arr));
+  },
+
+  openAll: (keys: string[]) => {
+    keys.forEach(k => tocState.expandedGroups.add(k));
+    tocState.save();
+  },
+
+  closeAll: () => {
+    tocState.expandedGroups.clear();
+    tocState.save();
+  },
+
+  toggle: (key: string, isOpen: boolean) => {
+    if (isOpen) tocState.expandedGroups.add(key);
+    else tocState.expandedGroups.delete(key);
+    tocState.save();
+  }
 };

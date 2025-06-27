@@ -1,8 +1,9 @@
 import { createGroupContainer, createQuestionHeader } from './ui';
 import { renderHeadings } from '../headings';
 import { toggleGroupVisibility } from './logic';
+import { tocState } from '../../state/tocState';
 
-export function createQuestionGroup(group: QAGroup, index: number, tocState: any): HTMLElement {
+export function createQuestionGroup(group: QAGroup, index: number): HTMLElement {
   const key = group.question;
 
   const groupEl = createGroupContainer();
@@ -19,8 +20,7 @@ export function createQuestionGroup(group: QAGroup, index: number, tocState: any
     toggleGroupVisibility({
       questionEl,
       headingsList,
-      key,
-      tocState
+      key
     });
   });
 

@@ -32,7 +32,7 @@ export function renderTOC(main: HTMLElement, data: QAGroup[]) {
   let lastHeadingsEl: HTMLElement | null = null;
 
   data.forEach((group, index) => {
-    const groupEl = createQuestionGroup(group, index, tocState);
+    const groupEl = createQuestionGroup(group, index);
     const headingsEl = groupEl.querySelector('[data-toc-heading-list]') as HTMLElement;
 
     lastGroupEl = groupEl;
