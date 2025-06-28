@@ -2,11 +2,13 @@ import { Notyf } from 'notyf';
 import 'notyf/notyf.min.css';
 
 let notyfInstance: Notyf | null = null;
+let showCount = 0;
+let baseDuration = 1500;
+let durationStep = 300;
 
 function getNotyf(): Notyf {
   if (!notyfInstance) {
     notyfInstance = new Notyf({
-      duration: 2000,
       ripple: true,
       position: {
         x: 'right',
@@ -17,7 +19,7 @@ function getNotyf(): Notyf {
           type: 'info',
           background: '#2f86eb',
           icon: {
-            className: 'fas fa-info-circle', // FontAwesome
+            className: 'fas fa-info-circle',
             tagName: 'i',
             color: 'white',
           },
@@ -56,18 +58,34 @@ function getNotyf(): Notyf {
   return notyfInstance;
 }
 
+function getDynamicDuration(): number {
+  const duration = baseDuration + showCount * durationStep;
+  showCount++;
+  setTimeout(() => showCount--, duration); // Giảm sau khi thông báo tắt
+  return duration;
+}
+
+function show(type: string, message: string, options?: any) {
+  getNotyf().open({
+    type,
+    message,
+    duration: getDynamicDuration(),
+    ...options,
+  });
+}
+
 export function showSuccess(message: string, options?: any) {
-  getNotyf().open({ type: 'success', message, ...options });
+  show('success', message, options);
 }
 
 export function showError(message: string, options?: any) {
-  getNotyf().open({ type: 'error', message, ...options });
+  show('error', message, options);
 }
 
 export function showInfo(message: string, options?: any) {
-  getNotyf().open({ type: 'info', message, ...options });
+  show('info', message, options);
 }
 
 export function showWarning(message: string, options?: any) {
-  getNotyf().open({ type: 'warning', message, ...options });
+  show('warning', message, options);
 }
