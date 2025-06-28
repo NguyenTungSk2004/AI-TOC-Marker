@@ -1,7 +1,5 @@
-import { toggleEvent } from './logic';
+import { allGroupsAreOpen, toggleEvent } from './logic';
 import {
-  createButtonWrapper,
-  createButtonGroupContainer,
   createMenuButton,
   createNavButton
 } from './ui';
@@ -10,17 +8,6 @@ export function createButtonGroup(): HTMLElement {
   function updateToggleText() {
     toggleBtn.textContent = allGroupsAreOpen() ? '🔽 Đóng tất cả' : '🔼 Mở tất cả';
   }
-
-  function allGroupsAreOpen(): boolean {
-    const lists = document.querySelectorAll('[data-toc-heading-list]');
-    return Array.from(lists).every(
-      el => (el as HTMLElement).style.display !== 'none'
-    );
-  }
-
-  const wrapper = createButtonWrapper();
-  const { left, right } = createButtonGroupContainer();
-
   // Tạo menu dropdown
   const menu = document.createElement('div');
   menu.className = `
@@ -68,8 +55,6 @@ export function createButtonGroup(): HTMLElement {
   container.append(navBtn, menu);
 
   menu.append(toggleBtn, goTop, goBottom);
-  right.append(container);
-  wrapper.append(left, right);
-  return wrapper;
+  return container;
 }
 

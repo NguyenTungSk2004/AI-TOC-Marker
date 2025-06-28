@@ -1,12 +1,6 @@
-export function createGroupContainer(): HTMLDivElement {
-  const container = document.createElement('div');
-  container.className = 'toc-group';
-  container.className += 'bg-gray-800 border border-gray-700 rounded p-3 shadow space-y-2';
-  return container;
-}
-
-export function createQuestionHeader(question: string, index: number): HTMLDivElement {
+export function createQuestionHeader(question: string, index: number, key: string): HTMLDivElement {
   const questionEl = document.createElement('div');
+  questionEl.setAttribute('data-toc-question', key);
   questionEl.title = question;
   questionEl.className =
     'bg-gray-700 px-3 py-2 rounded text-white font-semibold flex items-start text-base';

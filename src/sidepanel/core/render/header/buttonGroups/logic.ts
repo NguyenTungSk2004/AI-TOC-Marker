@@ -18,3 +18,10 @@ export const toggleEvent = {
     tocState.closeAll();
   }
 };
+
+export function allGroupsAreOpen(): boolean {
+  const lists = document.querySelectorAll('[data-toc-heading-list]');
+  return Array.from(lists).every(
+    el => (el as HTMLElement).style.display !== 'none'
+  );
+}

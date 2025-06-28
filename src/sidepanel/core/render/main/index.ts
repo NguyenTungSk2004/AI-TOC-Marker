@@ -1,32 +1,23 @@
-import { tocState } from '../state/tocState';
-import { createFooter } from './footer';
-import { createHeader } from './header';
-import { createQuestionGroup } from './questionGroup';
+import { tocState } from '../../state/tocState';
+import { createQuestionGroup } from './TOC-Marker/components';
 
 export function renderTOC(main: HTMLElement, data: QAGroup[]) {
   tocState.load();
   main.innerHTML = '';
-  main.className = `h-full p-3 space-y-3`;
+  main.className = `scroll-container h-screen p-3 space-y-3 overflow-y-auto`;
   
-  createHeader(main);
-  createFooter(main);
-
   const headerEl = document.getElementById('toc-header');
   const surveyEl = document.getElementById('toc-survey');
-  if (headerEl){
-    requestAnimationFrame(() => {
-      const offset = headerEl.getBoundingClientRect().height - 30;
-      main.style.marginTop = `${offset}px`;
-    });
-  }
-  if (surveyEl) {
-    requestAnimationFrame(() => {
-      const surveyHeight = surveyEl.getBoundingClientRect().height - 20;
-      main.style.marginBottom = `${surveyHeight}px`;
-    });
-  }
-     
-  // main.style.marginBottom = 
+  requestAnimationFrame(() => {
+    const headerHeight = headerEl?.getBoundingClientRect().height ?? 0;
+    const surveyHeight = surveyEl?.getBoundingClientRect().height ?? 0;
+
+    // Set chiều cao trừ header và survey
+    main.style.height = `calc(100vh - ${headerHeight + surveyHeight}px)`;
+    main.style.overflowY = 'auto';
+    main.style.marginTop =  `${headerHeight-10}px`; 
+    main.style.marginBottom = `${surveyHeight-30}px`;
+  });
 
   let lastGroupEl: HTMLElement | null = null;
   let lastHeadingsEl: HTMLElement | null = null;

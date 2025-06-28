@@ -1,4 +1,4 @@
-import { handleHeadingClick } from './logic';
+import { handleHeadingClick } from "../events/handleHeadingClick";
 
 export function createHeadingsList(headings: TOCHeading[]): HTMLUListElement {
   const ul = document.createElement('ul');

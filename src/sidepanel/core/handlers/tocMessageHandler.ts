@@ -1,4 +1,4 @@
-import { renderTOC } from "../render/renderTOC";
+import { renderTOC } from "../render/main";
 
 let previousTOCJSON = '';
 
