@@ -17,13 +17,15 @@ export function createButtonGroup(): HTMLElement {
 
   // Scroll lên đầu
   const goTop = createMenuButton('⬆ Lên đầu', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    const scrollContainer = document.querySelector('.scroll-container') || document.scrollingElement || document.documentElement;
+    scrollContainer.scrollTo({ top: 0, behavior: 'smooth' });
     menu.classList.add('hidden');
   });
 
   // Scroll xuống cuối
   const goBottom = createMenuButton('⬇ Xuống cuối', () => {
-    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    const scrollContainer = document.querySelector('.scroll-container') || document.scrollingElement || document.documentElement;
+    scrollContainer.scrollTo({ top: scrollContainer.scrollHeight, behavior: 'smooth' });
     menu.classList.add('hidden');
   });
 
