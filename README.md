@@ -1,6 +1,6 @@
 # 🌟 AI TOC Marker – Tiện ích tạo mục lục cho ChatGPT siêu nhanh và thông minh
 
-**AI TOC Marker** là tiện ích mở rộng dành cho trình duyệt **Google Chrome**, hỗ trợ **tự động tạo mục lục, đánh dấu và điều hướng các tiêu đề (heading)** trong hội thoại ChatGPT. Rất phù hợp để **quản lý nội dung dài, tra cứu nhanh thông tin và nâng cao hiệu quả học tập, làm việc**.
+**AI TOC Marker** là tiện ích mở rộng dành cho các trình duyệt dựa trên **Chromium** (như **Google Chrome**, **Microsoft Edge**, v.v.), hỗ trợ **tự động tạo mục lục, đánh dấu và điều hướng các tiêu đề (heading)** trong hội thoại ChatGPT. Rất phù hợp để **quản lý nội dung dài, tra cứu nhanh thông tin và nâng cao hiệu quả học tập, làm việc**.
 
 🔗 **Hướng dẫn chi tiết & bản demo:** [https://nguyentungsk2004.github.io/AI-TOC-Marker/](https://nguyentungsk2004.github.io/AI-TOC-Marker/)
 
@@ -29,7 +29,6 @@
 * ⚙️ **Tối ưu hiệu suất xử lý DOM** – hoạt động nhanh, mượt
 * 🐞 **Sửa nhiều lỗi nhỏ** – tăng độ ổn định
 * 📦 **Gói build gọn nhẹ hơn** – tải nhanh, ít file dư thừa
-
 ---
 
 ## 🎮 Demo thực tế
