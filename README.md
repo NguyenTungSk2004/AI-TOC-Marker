@@ -1,6 +1,6 @@
 # 🌟 AI TOC Marker – Tiện ích tạo mục lục cho ChatGPT
 
-**AI TOC Marker** là tiện ích mở rộng cho trình duyệt **Chrome** giúc bạn **đánh dấu và điều hướng các tiêu đề (heading)** trong cuộc hội thoại của **ChatGPT**. Rất hữu ích khi làm việc với nội dung dài, cần tìm nhanh thông tin hoặc tổ chức lại cấu trúc câu trả lời.
+**AI TOC Marker** là tiện ích mở rộng cho trình duyệt **Chrome** giúp bạn **đánh dấu và điều hướng các tiêu đề (heading)** trong cuộc hội thoại của **ChatGPT**. Rất hữu ích khi làm việc với nội dung dài, cần tìm nhanh thông tin hoặc tổ chức lại cấu trúc câu trả lời.
 
 🔗 **Xem hướng dẫn chi tiết & demo tại:** [https://nguyentungsk2004.github.io/AI-TOC-Marker/](https://nguyentungsk2004.github.io/AI-TOC-Marker/)
 
@@ -9,24 +9,25 @@
 ## 🚀 Tính năng nổi bật
 
 * 🔎 **Tự động nhận diện** tiêu đề như `H1`, `H2` trong phản hồi ChatGPT
-* 🧽 **Điều hướng nhanh** đến phần mong muốn trong hội thoại
+* 🧭 **Điều hướng nhanh** đến phần mong muốn trong hội thoại
 * 🌟 **Đánh dấu & làm nổi bật** các mục chính rõ ràng
 * 🔐 **Hoạt động cục bộ** – không cần tích hợp API hay tài khoản
 * 💡 **Dễ cài đặt** – chỉ vài bước là xong
-* 🧑‍💻 **Mã nguồn mở** – bạn có thể tuý biến hoặc đóng góp
+* 🧑‍💻 **Mã nguồn mở** – bạn có thể tùy biến hoặc đóng góp
 * 📉 **Giao diện gọn gàng, tối ưu cho dark mode** (light mode sẽ hỗ trợ trong các bản cập nhật tiếp theo)
 
 ---
 
-## ✨ Tính năng mới trong v0.1.0
+## 🆕 Có gì mới trong v1.0.0?
 
-* 🎨 **Giao diện mới gọn gàng** – tối ưu cho dark mode, sắp xếp nút rõ ràng
-* 🔍 **Tìm kiếm thông minh** – đếm kết quả, điều hướng trước/sau, highlight nội dung khớp
-* 🧭 **Nút điều hướng nhanh** – Lên đầu / Xuống cuối cuộc hội thoại
-* 📜 **Tự động cuộn đến câu hỏi mới** – giúp bạn luôn theo dõi phần hội thoại mới nhất
-* 📌 **Danh sách tiêu đề có thể thu gọn/mở rộng** – dễ theo dõi hơn với nhiều heading
-* ⚙️ **Tối ưu hiệu suất và logic DOM** – tránh duplicate, xử lý heading lồng nhau
-* 🧩 **Tái cấu trúc mã nguồn** – chia module, dễ bảo trì
+✨ **Bản chính thức** với nhiều nâng cấp vượt trội từ bản beta:
+
+* 🎨 **Giao diện mới hiện đại & thân thiện hơn**
+* 🔔 **Cập nhật hệ thống thông báo** rõ ràng, nổi bật hơn
+* 🧠 **Lưu lịch sử bật/tắt các tab trong cuộc hội thoại** – ghi nhớ các tab đã mở trong lần trước, giúp tiếp tục làm việc liền mạch
+* 🧩 **Tối ưu lại hiệu suất và luồng xử lý DOM** – tăng tốc hiển thị và giảm trễ
+* 🐞 **Sửa nhiều lỗi tìm ẩn** khi thao tác nhanh hoặc thao tác song song nhiều cuộc trò chuyện
+* 📦 **Đóng gói gọn nhẹ hơn** – giúp tải nhanh hơn, ít file hơn
 
 ---
 
@@ -47,7 +48,7 @@
 5. 📂 Click **Load unpacked** → chọn thư mục đã giải nén
 6. ✅ Mở ChatGPT → tiện ích sẽ tự động hoạt động
 
-📁 Trong thư mục tải về có file `HOW-TO-INSTALL.html` hướng dẫn chi tiết kèm ảnh.
+📁 Trong thư mục tải về có file `HOW-TO-INSTALL.html` hướng dẫn chi tiết kèm ảnh minh hoạ.
 
 ---
 
@@ -55,10 +56,11 @@
 
 <img src="https://img.shields.io/github/downloads/NguyenTungSk2004/AI-TOC-Marker/total" alt="Tổng số lượt tải" style="vertical-align: middle; margin-bottom: 4px;" />
 
-| 📌 Phiên bản | 📝 Ghi chú                                          | 🔗 Link tải                                                                                                                       |
-| ------------ | --------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| `0.1.0`      | Giao diện mới, tìm kiếm nâng cao, nhiều cải tiến UX | [⬇️ Tải AI-TOC-Marker v0.1.0](https://github.com/NguyenTungSk2004/AI-TOC-Marker/releases/download/v0.1.0/AI-TOC-Marker-0.1.0.zip) |
-| `0.0.1`      | Phiên bản đầu tiên                                  | [⬇️ Tải AI-TOC-Marker v0.0.1](https://github.com/NguyenTungSk2004/AI-TOC-Marker/releases/download/v0.0.1/AI-TOC-Marker-0.0.1.zip) |
+| 📌 Phiên bản | 📝 Ghi chú                                            | 🔗 Link tải                                                                                                                       |
+| ------------ | ----------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `1.0.0`      | Bản chính thức: UI mới, tối ưu hiệu suất, lưu lịch sử | [⬇️ Tải AI-TOC-Marker v1.0.0](https://github.com/NguyenTungSk2004/AI-TOC-Marker/releases/download/v1.0.0/AI-TOC-Marker-1.0.0.zip) |
+| `0.1.0`      | Giao diện mới, tìm kiếm nâng cao, nhiều cải tiến UX   | [⬇️ Tải AI-TOC-Marker v0.1.0](https://github.com/NguyenTungSk2004/AI-TOC-Marker/releases/download/v0.1.0/AI-TOC-Marker-0.1.0.zip) |
+| `0.0.1`      | Phiên bản đầu tiên                                    | [⬇️ Tải AI-TOC-Marker v0.0.1](https://github.com/NguyenTungSk2004/AI-TOC-Marker/releases/download/v0.0.1/AI-TOC-Marker-0.0.1.zip) |
 
 ---
 
@@ -107,16 +109,16 @@ npm run zip
 🔗 [GitHub cá nhân](https://github.com/NguyenTungSk2004/AI-TOC-Marker)
 
 ---
----
 
 ## ⚖️ Giấy phép
 
 **AI TOC Marker** được phát hành theo giấy phép [Apache License 2.0](./LICENSE).
 
 Điều đó có nghĩa là bạn được:
-- ✅ Tự do sử dụng, chỉnh sửa, phân phối lại mã nguồn
-- ✅ Tích hợp vào sản phẩm thương mại
-- ✅ An tâm nhờ có điều khoản bảo vệ bản quyền & sáng chế
+
+* ✅ Tự do sử dụng, chỉnh sửa, phân phối lại mã nguồn
+* ✅ Tích hợp vào sản phẩm thương mại
+* ✅ An tâm nhờ có điều khoản bảo vệ bản quyền & sáng chế
 
 > Xem chi tiết trong [LICENSE](./LICENSE)
 
