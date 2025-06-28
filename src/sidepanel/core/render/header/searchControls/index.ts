@@ -39,7 +39,14 @@ export function createTocSearchInput(): HTMLElement {
   });
 
   searchBtn.onclick = () => {
-    triggerSearch(input.value.trim(), prevBtn, nextBtn, counter, navBar);
+      if(searchState.results.length > 0 && searchState.currentIndex !== searchState.results.length - 1) searchDone = true;
+      else searchDone = false;
+      if (searchDone) {
+        searchState.next();
+        highlightCurrent(prevBtn, nextBtn, counter, navBar);
+      }else{
+        triggerSearch(input.value.trim(), prevBtn, nextBtn, counter, navBar);
+      }
   };
   
   prevBtn.onclick = () => {
