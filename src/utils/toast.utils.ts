@@ -6,7 +6,7 @@ let notyfInstance: Notyf | null = null;
 function getNotyf(): Notyf {
   if (!notyfInstance) {
     notyfInstance = new Notyf({
-      duration: 3000,
+      duration: 2000,
       ripple: true,
       position: {
         x: 'right',
