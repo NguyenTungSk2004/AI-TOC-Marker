@@ -39,11 +39,11 @@
 
 ---
 
-## 🛠 Cách cài đặt tiện ích vào Chrome
+## 🛠 Cách cài đặt tiện ích
 
 1. 📦 Tải file `.zip` bên dưới
 2. 🗂 Giải nén file
-3. 🌐 Truy cập `chrome://extensions`
+3. 🌐 Truy cập `[yourbrower]://extensions`
 4. 🔧 Bật **Developer Mode** (Chế độ nhà phát triển)
 5. 📂 Chọn **Load unpacked** → chọn thư mục đã giải nén
 6. ✅ Mở ChatGPT → tiện ích sẽ tự động hoạt động
