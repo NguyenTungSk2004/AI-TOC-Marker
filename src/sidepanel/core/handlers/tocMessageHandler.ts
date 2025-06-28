@@ -1,4 +1,5 @@
 import { renderTOC } from "../render/main";
+import { tocState } from "../state/tocState";
 
 let previousTOCJSON = '';
 
@@ -13,6 +14,7 @@ export function setupTOCMessageHandler(main: HTMLElement) {
         const toc = request.toc || [];
         const currentJSON = JSON.stringify(toc);
         if (currentJSON !== previousTOCJSON) {
+            if (!currentJSON.includes(previousTOCJSON)) tocState.closeAll();
             renderTOC(main, toc);
             previousTOCJSON = currentJSON;
         }

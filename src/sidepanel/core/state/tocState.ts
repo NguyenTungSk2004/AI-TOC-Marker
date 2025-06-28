@@ -15,7 +15,6 @@ export const tocState = {
 
   save: () => {
     const arr = Array.from(tocState.expandedGroups);
-    console.log('[TOC] Lưu expandedGroups vào storage:', arr);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(arr));
   },
 

@@ -5,8 +5,8 @@ export const toggleEvent = {
     const keys: string[] = [];
     document.querySelectorAll('[data-toc-heading-list]').forEach(el => {
       (el as HTMLElement).style.display = 'block';
-      const groupEl = el.closest('[data-group-key]');
-      if (groupEl) keys.push(groupEl.getAttribute('data-group-key')!);
+      const groupEl = el.closest('[data-toc-group]');
+      if (groupEl) keys.push(groupEl.getAttribute('data-toc-group')!);
     });
     tocState.openAll(keys);
   },
