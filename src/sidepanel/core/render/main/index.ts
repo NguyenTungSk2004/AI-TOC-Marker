@@ -19,6 +19,7 @@ export function renderTOC(main: HTMLElement, data: QAGroup[]) {
     main.style.marginBottom = `${surveyHeight-30}px`;
   });
 
+  let secondLastGroupEl: HTMLElement | null = null;
   let lastGroupEl: HTMLElement | null = null;
   let lastHeadingsEl: HTMLElement | null = null;
 
@@ -26,23 +27,29 @@ export function renderTOC(main: HTMLElement, data: QAGroup[]) {
     const groupEl = createQuestionGroup(group, index);
     const headingsEl = groupEl.querySelector('[data-toc-heading-list]') as HTMLElement;
 
-    lastGroupEl = groupEl;
-    lastHeadingsEl = headingsEl;
+    if (index === data.length - 2) {
+      secondLastGroupEl = groupEl;
+    } 
+    if (index === data.length - 1) {
+      lastGroupEl = groupEl;
+      lastHeadingsEl = headingsEl;
+    }
 
     main.appendChild(groupEl);
   });
 
   requestAnimationFrame(() => {
-    if (lastGroupEl && lastHeadingsEl) {
-      // Kiểm tra xem lastGroupEl có đang bị che không
-      lastHeadingsEl.style.display = 'block';
-      const rect = lastGroupEl.getBoundingClientRect();
+    if (lastGroupEl && lastHeadingsEl && secondLastGroupEl) {
+      const rect = secondLastGroupEl.getBoundingClientRect();
       const mainRect = main.getBoundingClientRect();
       const isOutOfView = rect.bottom > mainRect.bottom || rect.top < mainRect.top;
 
+      lastHeadingsEl.style.display = 'block';
+
       if (!(isOutOfView && tocState.hasAnyOpen())) {
-        lastGroupEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        main.scrollTop = main.scrollHeight;
       }
     }
   });
+
 }

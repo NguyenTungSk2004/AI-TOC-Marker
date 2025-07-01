@@ -16,9 +16,11 @@ export function setupTOCMessageHandler(main: HTMLElement) {
         const currentJSON = JSON.stringify(toc);
         if (currentJSON !== previousTOCJSON) {
             if (!currentJSON.includes(previousTOCJSON) && previousURL !== window.location.href) tocState.closeAll();
-            renderTOC(main, toc);
-            previousTOCJSON = currentJSON;
-            previousURL = window.location.href;
+            if (currentJSON !== previousTOCJSON){
+                renderTOC(main, toc);
+                previousTOCJSON = currentJSON;
+                previousURL = window.location.href;
+            }
         }
         }
         return false;
