@@ -4,6 +4,14 @@ const STORAGE_KEY = 'expandedGroups';
 export const tocState = {
   expandedGroups: new Set<string>(),
 
+  hasAnyOpen: () => {
+    return tocState.expandedGroups.size > 0;
+  },
+  
+  isClosed: () => {
+    return tocState.expandedGroups.size === 0;
+  },
+
   load: () => {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (raw) {

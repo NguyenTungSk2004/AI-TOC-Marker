@@ -34,8 +34,15 @@ export function renderTOC(main: HTMLElement, data: QAGroup[]) {
 
   requestAnimationFrame(() => {
     if (lastGroupEl && lastHeadingsEl) {
+      // Kiểm tra xem lastGroupEl có đang bị che không
       lastHeadingsEl.style.display = 'block';
-      lastGroupEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      const rect = lastGroupEl.getBoundingClientRect();
+      const mainRect = main.getBoundingClientRect();
+      const isOutOfView = rect.bottom > mainRect.bottom || rect.top < mainRect.top;
+
+      if (!(isOutOfView && tocState.hasAnyOpen())) {
+        lastGroupEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
     }
   });
 }
