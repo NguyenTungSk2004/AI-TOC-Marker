@@ -16,14 +16,6 @@ export function createTocSearchInput(): HTMLElement {
   const searchBtn = createSearchButton();
   const { navBar, prevBtn, nextBtn, counter } = createNavBar();
   
-  input.addEventListener("input", () => {
-      const keyword = input.value.trim();
-      if (!keyword) {
-          triggerSearch("", prevBtn, nextBtn, counter, navBar);
-          return;
-      }
-  });
-  
   function resetSearch() {
     const keyword = input.value.trim();
 
@@ -55,7 +47,14 @@ export function createTocSearchInput(): HTMLElement {
     }
   }
 
-
+  input.addEventListener("input", () => {
+      const keyword = input.value.trim();
+      if (!keyword) {
+          triggerSearch("", prevBtn, nextBtn, counter, navBar);
+          return;
+      }
+  });
+  
   input.addEventListener("keydown", (e) => {
       if (e.key === "Enter") {
           resetSearch();
