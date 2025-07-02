@@ -1,4 +1,4 @@
-import { renderTOC } from "@sidepanel/core/main";
+import { renderTOC } from "@sidepanel/layout/main";
 import { tocState } from "@sidepanel/state/tocState";
 
 let previousTOCJSON = '';

@@ -1,5 +1,5 @@
-import { createFooter } from './core/footer';
-import { createHeader } from './core/header';
+import { createFooter } from './layout/footer';
+import { createHeader } from './layout/header';
 import { setupTOCMessageHandler } from './handlers/tocMessageHandler';
 import './index.css';
 
