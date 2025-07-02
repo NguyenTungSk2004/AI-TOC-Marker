@@ -3,8 +3,6 @@ import { createQuestionGroup } from './TOC-Marker/components';
 
 export function renderTOC(main: HTMLElement, data: QAGroup[]) {
   tocState.load();
-  main.innerHTML = '';
-  main.className = `scroll-container h-screen p-3 space-y-3 overflow-y-auto`;
   
   const headerEl = document.getElementById('toc-header');
   const surveyEl = document.getElementById('toc-survey');

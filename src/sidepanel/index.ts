@@ -9,7 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const header = createHeader();
   const footer = createFooter();
 
-  main.className = 'space-y-6';
+  main.id = 'main';
+  main.innerHTML = '';
+  main.className = `scroll-container h-screen p-3 space-y-3 overflow-y-auto`;
 
   app.appendChild(header);
   app.appendChild(main);
