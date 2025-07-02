@@ -1,4 +1,4 @@
-import { showInfo, showSuccess } from "@utils/toast.utils";
+import { showInfo, showSuccess, showWarning } from "@utils/toast.utils";
 import { createNavBar } from "./components/createNavBar";
 import { createSearchButton } from "./components/createSearchButton";
 import { createSearchInput } from "./components/createSearchInput";
@@ -16,21 +16,13 @@ export function createTocSearchInput(): HTMLElement {
   const searchBtn = createSearchButton();
   const { navBar, prevBtn, nextBtn, counter } = createNavBar();
   
-  let previousKeyword: string = '';
-  let debounceTimer: ReturnType<typeof setTimeout>;
   input.addEventListener("input", () => {
-      const keyword = input.value;
-      clearHighlights();
-      searchState.reset();
-      updateButtons(prevBtn, nextBtn, counter, navBar);
-      if (keyword !== previousKeyword) {
-        previousKeyword = keyword;
-        clearTimeout(debounceTimer);
-        debounceTimer = setTimeout(() => {
-          triggerSearch(input.value.trim(), prevBtn, nextBtn, counter, navBar);
-        }, 100);
+      const keyword = input.value.trim();
+      if (!keyword) {
+          triggerSearch("", prevBtn, nextBtn, counter, navBar);
+          return;
       }
-    });
+  });
   
   function resetSearch() {
     const keyword = input.value.trim();
@@ -40,26 +32,29 @@ export function createTocSearchInput(): HTMLElement {
       return;
     }
 
-    if (searchState.results.length === 0) {
-      // Chưa có kết quả, hoặc đã clear trước đó
+    // Nếu keyword đã thay đổi → trigger tìm kiếm mới
+    const isNewKeyword = keyword !== searchState.keyword;
+
+    if (isNewKeyword || searchState.results.length === 0) {
+      searchState.keyword = keyword; // Cập nhật từ khóa tìm kiếm
       triggerSearch(keyword, prevBtn, nextBtn, counter, navBar);
 
-      // Hiển thị kết quả nếu có
       if (searchState.results.length === 0) {
-        showInfo("Không tìm thấy kết quả phù hợp!");
+        showWarning("Không tìm thấy kết quả phù hợp!");
       } else {
         showSuccess(`Tìm thấy ${searchState.results.length} kết quả phù hợp!`);
       }
     } else {
-      // Có kết quả rồi → tiếp tục nhảy đến kết quả kế tiếp
+      // Từ khóa cũ → điều hướng trong kết quả
       if (searchState.currentIndex < searchState.results.length - 1) {
         searchState.next();
         highlightCurrent(prevBtn, nextBtn, counter, navBar);
       } else {
-        triggerSearch(keyword, prevBtn, nextBtn, counter, navBar);
+        showInfo("Đã đến kết quả cuối cùng.");
       }
     }
   }
+
 
   input.addEventListener("keydown", (e) => {
       if (e.key === "Enter") {

@@ -1,22 +1,24 @@
 export const searchState = {
   results: [] as HTMLElement[],
-  currentIndex: -1,
+  currentIndex: 0,
+  keyword: "",
 
-  reset() {
-    this.results = [];
-    this.currentIndex = -1;
+  setResults(results: HTMLElement[]) {
+    this.results = results;
+    this.currentIndex = 0;
   },
 
-  setResults(newResults: HTMLElement[]) {
-    this.results = newResults;
-    this.currentIndex = newResults.length ? 0 : -1;
+  next() {
+    if (this.currentIndex < this.results.length - 1) this.currentIndex++;
   },
 
   prev() {
     if (this.currentIndex > 0) this.currentIndex--;
   },
 
-  next() {
-    if (this.currentIndex < this.results.length - 1) this.currentIndex++;
-  },
+  reset() {
+    this.results = [];
+    this.currentIndex = 0;
+    this.keyword = "";
+  }
 };
