@@ -1,6 +1,6 @@
-import { setupTOCMessageHandler } from './core/handlers/tocMessageHandler';
-import { createFooter } from './core/render/footer';
-import { createHeader } from './core/render/header';
+import { createFooter } from './core/footer';
+import { createHeader } from './core/header';
+import { setupTOCMessageHandler } from './handlers/tocMessageHandler';
 import './index.css';
 
 document.addEventListener('DOMContentLoaded', () => {

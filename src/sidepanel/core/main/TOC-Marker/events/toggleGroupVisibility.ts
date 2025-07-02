@@ -1,4 +1,4 @@
-import { tocState } from "../../../../state/tocState";
+import { tocState } from "@sidepanel/state/tocState";
 
 interface ToggleParams {
   groupEl: HTMLElement;

@@ -1,4 +1,4 @@
-import { tocState } from "../../../state/tocState";
+import { tocState } from "@sidepanel/state/tocState";
 
 export const toggleEvent = {
   openAll() {

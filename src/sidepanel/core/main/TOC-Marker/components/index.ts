@@ -1,4 +1,4 @@
-import { tocState } from '../../../../state/tocState';
+import { tocState } from '@sidepanel/state/tocState';
 import { toggleGroupVisibility } from '../events/toggleGroupVisibility';
 import { createGroupContainer } from './createGroupContainer';
 import { createHeadingsList } from './createHeadingsList';

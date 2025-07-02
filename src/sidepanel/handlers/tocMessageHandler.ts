@@ -1,5 +1,5 @@
-import { renderTOC } from "../render/main";
-import { tocState } from "../state/tocState";
+import { renderTOC } from "@sidepanel/core/main";
+import { tocState } from "@sidepanel/state/tocState";
 
 let previousTOCJSON = '';
 let previousURL = '';

@@ -1,4 +1,4 @@
-import { tocState } from '../../state/tocState';
+import { tocState } from '@sidepanel/state/tocState';
 import { createQuestionGroup } from './TOC-Marker/components';
 
 export function renderTOC(main: HTMLElement, data: QAGroup[]) {

@@ -3,7 +3,7 @@ import { createNavBar } from "./components/createNavBar";
 import { createSearchButton } from "./components/createSearchButton";
 import { createSearchInput } from "./components/createSearchInput";
 import { clearHighlights, highlightCurrent, triggerSearch, updateButtons } from "./events/searchActions";
-import { searchState } from "./events/searchState";
+import { searchState } from "@sidepanel/state/searchState";
 
 export function createTocSearchInput(): HTMLElement {
   const wrapper = document.createElement('div');

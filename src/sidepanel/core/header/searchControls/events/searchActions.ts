@@ -1,4 +1,4 @@
-import { searchState } from "./searchState";
+import { searchState } from "@sidepanel/state/searchState";
 import { normalizeText } from "@utils/normalizeText.util";
 
 export function updateButtons(prevBtn: HTMLButtonElement, nextBtn: HTMLButtonElement, counter: HTMLSpanElement, navBar: HTMLElement) {
