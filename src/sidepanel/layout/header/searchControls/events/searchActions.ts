@@ -1,13 +1,27 @@
 import { searchState } from "@sidepanel/state/searchState";
 import { normalizeText } from "@utils/normalizeText.util";
 
-export function updateButtons(prevBtn: HTMLButtonElement, nextBtn: HTMLButtonElement, counter: HTMLSpanElement, navBar: HTMLElement) {
+export function updateButtons(
+  prevBtn: HTMLButtonElement,
+  nextBtn: HTMLButtonElement,
+  counter: HTMLSpanElement,
+  navBar: HTMLElement
+) {
   const { currentIndex, results } = searchState;
+  const el = results[currentIndex];
+  const main = document.getElementById("main");
+
   prevBtn.disabled = currentIndex <= 0;
   nextBtn.disabled = currentIndex >= results.length - 1;
   counter.textContent =
     results.length > 0 ? `🔎 ${currentIndex + 1} / ${results.length} kết quả` : '';
   navBar.style.display = results.length > 0 ? 'flex' : 'none';
+  
+  if (!main) return;
+  main.style.paddingTop = '0px'; // Reset padding
+
+  if (!el) return;
+  if (el.textContent?.includes("Q1")) main.style.paddingTop = `${el.offsetHeight+20}px`;
 }
 
 export function clearHighlights() {
@@ -16,7 +30,12 @@ export function clearHighlights() {
   );
 }
 
-export function highlightCurrent(prevBtn: HTMLButtonElement, nextBtn: HTMLButtonElement, counter: HTMLSpanElement, navBar: HTMLElement) {
+export function highlightCurrent(
+  prevBtn: HTMLButtonElement, 
+  nextBtn: HTMLButtonElement, 
+  counter: HTMLSpanElement, 
+  navBar: HTMLElement
+) {
   clearHighlights();
 
   const el = searchState.results[searchState.currentIndex];
