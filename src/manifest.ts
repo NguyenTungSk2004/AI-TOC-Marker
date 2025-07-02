@@ -15,12 +15,12 @@ export default defineManifest({
     48: 'img/icon-48.png',
     128: 'img/icon-128.png',
   },
-  action: {
-    // default_popup: 'sidepanel.html',
-    default_icon: {
-      16: 'img/icon-16.png',
-    },
-  },
+  // action: {
+  //   // default_popup: 'sidepanel.html',
+  //   // default_icon: {
+  //     // 16: 'img/icon-16.png',
+  //   },
+  // },
   // options_page: 'options.html',
   // devtools_page: 'devtools.html',
   background: {

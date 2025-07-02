@@ -1,5 +1,5 @@
-import { showInfo } from "../../../../../../utils/toast.utils";
 import { searchState } from "./searchState";
+import { normalizeText } from "@utils/normalizeText.util";
 
 export function updateButtons(prevBtn: HTMLButtonElement, nextBtn: HTMLButtonElement, counter: HTMLSpanElement, navBar: HTMLElement) {
   const { currentIndex, results } = searchState;
@@ -45,20 +45,23 @@ export function highlightCurrent(prevBtn: HTMLButtonElement, nextBtn: HTMLButton
 }
 
 export function collectSearchResults(keyword: string): HTMLElement[] {
-  const lower = keyword.toLowerCase();
+  const normalizedKeyword = normalizeText(keyword);
+
   const matches: HTMLElement[] = [];
 
-  document.querySelectorAll("[data-group-key]").forEach((el) => {
-    if (el.textContent?.toLowerCase().includes(lower)) {
-      matches.push(el as HTMLElement);
-    }
-  });
+  const checkMatch = (el: Element) => {
+    const rawText = el.textContent || '';
+    const rawLower = rawText.toLowerCase();
+    const normalizedText = normalizeText(rawText);
 
-  document.querySelectorAll("[data-toc-question]").forEach((el) => {
-    if (el.textContent?.toLowerCase().includes(lower)) {
+    // Nếu keyword có dấu → so sánh theo cả 2 cách
+    const match = rawLower.includes(keyword.toLowerCase()) || normalizedText.includes(normalizedKeyword);
+    if (match) {
       matches.push(el as HTMLElement);
     }
-  });
+  };
+
+  document.querySelectorAll("[data-group-key], [data-toc-question]").forEach(checkMatch);
 
   return matches;
 }
@@ -70,20 +73,21 @@ export function triggerSearch(
   counter: HTMLSpanElement,
   navBar: HTMLElement
 ) {
-  if (!keyword) {
-    clearHighlights();
+  clearHighlights(); // 🔥 Dọn highlight trước
+  const trimmedKeyword = keyword.trim();
+  if (!trimmedKeyword) {
     searchState.reset();
     updateButtons(prevBtn, nextBtn, counter, navBar);
     return;
   }
-
-  const results = collectSearchResults(keyword);
+  
+  const results = collectSearchResults(trimmedKeyword);
   searchState.setResults(results);
 
-  if (results.length === 0) {
-    showInfo("Không tìm thấy kết quả phù hợp!");
-    clearHighlights();
-  } else {
-    highlightCurrent(prevBtn, nextBtn, counter, navBar);
-  }
+  updateButtons(prevBtn, nextBtn, counter, navBar); // 🟡 nên luôn gọi để cập nhật trạng thái nút
+
+  if (results.length === 0) return;
+
+  highlightCurrent(prevBtn, nextBtn, counter, navBar);
 }
+

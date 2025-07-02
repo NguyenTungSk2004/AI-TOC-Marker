@@ -3,23 +3,36 @@ import { crx } from '@crxjs/vite-plugin'
 import manifest from './src/manifest'
 import obfuscator from 'rollup-plugin-javascript-obfuscator'
 import crypto from 'crypto'
+import path from 'path'
 
 function hashName(str: string) {
   return crypto.createHash('md5').update(str).digest('hex').slice(0, 8)
 }
 
 export default defineConfig({
+  resolve: {
+    alias: {
+      '@utils': path.resolve(__dirname, 'src/utils'),
+      '@sidepanel': path.resolve(__dirname, 'src/sidepanel'),
+      '@contentScript': path.resolve(__dirname, 'src/contentScript'),
+      '@background': path.resolve(__dirname, 'src/background'),
+      '@popup': path.resolve(__dirname, 'src/popup'),
+      '@options': path.resolve(__dirname, 'src/options'),
+      '@assets': path.resolve(__dirname, 'src/assets'),
+      '@types': path.resolve(__dirname, 'src/types'),
+    },
+  },
   build: {
     emptyOutDir: true,
     outDir: 'build',
     sourcemap: false,
     minify: 'terser',
     terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true,
-        pure_funcs: ['console.log', 'console.warn', 'console.error'], // loại trừ cả khi console còn sót
-      },
+      // compress: {
+      //   drop_console: true,
+      //   drop_debugger: true,
+      //   pure_funcs: ['console.log', 'console.warn', 'console.error'], // loại trừ cả khi console còn sót
+      // },
       mangle: {
         toplevel: true,
         properties: {
@@ -67,4 +80,7 @@ export default defineConfig({
   plugins: [
     crx({ manifest }),
   ],
+  optimizeDeps: {
+    include: ['webextension-polyfill']
+  }
 })

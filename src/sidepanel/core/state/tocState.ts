@@ -1,4 +1,3 @@
-// === core/state/tocState.ts ===
 const STORAGE_KEY = 'expandedGroups';
 
 export const tocState = {
