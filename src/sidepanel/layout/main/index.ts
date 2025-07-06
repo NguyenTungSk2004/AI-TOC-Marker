@@ -2,6 +2,7 @@ import { tocState } from '@sidepanel/state/tocState';
 import { createQuestionGroup } from './TOC-Marker/components';
 
 export function renderTOC(main: HTMLElement, data: QAGroup[]) {
+  main.innerHTML = '';
   tocState.load();
   
   const headerEl = document.getElementById('toc-header');

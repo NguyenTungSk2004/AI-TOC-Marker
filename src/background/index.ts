@@ -14,7 +14,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     chrome.storage.local.set({ toc });
 
     try {
-      chrome.runtime.sendMessage({ type: 'TOC_DATA', toc }, () => {
+      chrome.runtime.sendMessage({ type: 'TOC_DATA', toc, tabUrl: sender.tab?.url }, () => {
       if (chrome.runtime.lastError) {
         console.warn('[TOC] Sidepanel chưa sẵn sàng:', chrome.runtime.lastError.message);
       }

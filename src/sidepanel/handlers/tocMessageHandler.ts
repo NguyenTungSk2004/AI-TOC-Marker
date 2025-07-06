@@ -13,14 +13,13 @@ export function setupTOCMessageHandler(main: HTMLElement) {
     chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
         if (request.type === 'TOC_DATA') {
         const toc = request.toc || [];
+        const currentTabUrl = request.tabUrl || '';
         const currentJSON = JSON.stringify(toc);
         if (currentJSON !== previousTOCJSON) {
-            if (!currentJSON.includes(previousTOCJSON) && previousURL !== window.location.href) tocState.closeAll();
-            if (currentJSON !== previousTOCJSON){
-                renderTOC(main, toc);
-                previousTOCJSON = currentJSON;
-                previousURL = window.location.href;
-            }
+            if (previousURL !== currentTabUrl) tocState.closeAll();
+            renderTOC(main, toc);
+            previousTOCJSON = currentJSON;
+            previousURL = currentTabUrl;
         }
         }
         return false;

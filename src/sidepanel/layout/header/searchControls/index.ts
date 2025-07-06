@@ -2,7 +2,7 @@ import { showInfo, showSuccess, showWarning } from "@utils/toast.utils";
 import { createNavBar } from "./components/createNavBar";
 import { createSearchButton } from "./components/createSearchButton";
 import { createSearchInput } from "./components/createSearchInput";
-import { clearHighlights, highlightCurrent, triggerSearch, updateButtons } from "./events/searchActions";
+import { highlightCurrent, triggerSearch } from "./events/searchActions";
 import { searchState } from "@sidepanel/state/searchState";
 
 export function createTocSearchInput(): HTMLElement {
@@ -54,7 +54,7 @@ export function createTocSearchInput(): HTMLElement {
           return;
       }
   });
-  
+
   input.addEventListener("keydown", (e) => {
       if (e.key === "Enter") {
           resetSearch();
