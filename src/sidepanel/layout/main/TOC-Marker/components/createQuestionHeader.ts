@@ -3,8 +3,7 @@ export function createQuestionHeader(question: string, index: number, key: strin
   questionEl.setAttribute('data-toc-question', key);
   questionEl.title = question;
   questionEl.className =
-    'bg-gray-700 px-3 py-2 rounded text-white font-semibold flex items-start text-base';
-  questionEl.style.cursor = 'pointer';
+    'bg-gray-700 px-3 py-2 rounded text-white font-semibold flex items-start text-base cursor-pointer';
 
   const prefix = document.createElement('span');
   prefix.textContent = `Q${index + 1}.`;

@@ -18,10 +18,10 @@ export function updateButtons(
   navBar.style.display = results.length > 0 ? 'flex' : 'none';
   
   if (!main) return;
-  main.style.paddingTop = '0px'; // Reset padding
+  // Apply padding to main based on navBar height when search results are present
+  main.style.paddingTop = results.length > 0 ? `${navBar.offsetHeight}px` : '0px';
 
   if (!el) return;
-  if (el.textContent?.includes("Q1")) main.style.paddingTop = `${el.offsetHeight+20}px`;
 }
 
 export function clearHighlights() {
@@ -42,15 +42,13 @@ export function highlightCurrent(
   if (!el) return;
 
   const headingList = el.closest("[data-toc-heading-list]") as HTMLElement;
-  if (headingList && headingList.style.display === "none") {
-    headingList.style.display = "block";
+  if (headingList && headingList.classList.contains("hidden")) {
+    headingList.classList.remove("hidden");
   }
 
   requestAnimationFrame(() => {
     const scrollContainer = document.querySelector('.scroll-container') || document.scrollingElement || document.documentElement;
-    const headerHeight = document.getElementById('toc-header')?.offsetHeight ?? 0;
-    const extraOffset = 32;
-    const scrollTop = el.offsetTop - headerHeight - extraOffset;
+    const scrollTop = el.offsetTop; // Simplified scrollTop calculation
 
     scrollContainer.scrollTo({
       top: scrollTop,
@@ -58,9 +56,10 @@ export function highlightCurrent(
     });
 
     el.classList.add('ring', 'ring-yellow-400', 'rounded');
-  });
 
-  updateButtons(prevBtn, nextBtn, counter, navBar);
+    // Call updateButtons without totalOffset
+    updateButtons(prevBtn, nextBtn, counter, navBar);
+  });
 }
 
 export function collectSearchResults(keyword: string): HTMLElement[] {
@@ -96,16 +95,19 @@ export function triggerSearch(
   const trimmedKeyword = keyword.trim();
   if (!trimmedKeyword) {
     searchState.reset();
-    updateButtons(prevBtn, nextBtn, counter, navBar);
+    updateButtons(prevBtn, nextBtn, counter, navBar); // Reset padding when no keyword
     return;
   }
   
   const results = collectSearchResults(trimmedKeyword);
   searchState.setResults(results);
 
-  updateButtons(prevBtn, nextBtn, counter, navBar); // 🟡 nên luôn gọi để cập nhật trạng thái nút
-
-  if (results.length === 0) return;
+  // updateButtons will be called in highlightCurrent if there are results
+  // or called directly here if no results to update button state
+  if (results.length === 0) {
+    updateButtons(prevBtn, nextBtn, counter, navBar);
+    return;
+  }
 
   highlightCurrent(prevBtn, nextBtn, counter, navBar);
 }

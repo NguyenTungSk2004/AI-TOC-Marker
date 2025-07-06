@@ -11,8 +11,6 @@
       "@sidepanel/*": ["src/sidepanel/*"],
       "@contentScript/*": ["src/contentScript/*"],
       "@background/*": ["src/background/*"],
-      "@popup/*": ["src/popup/*"],
-      "@options/*": ["src/options/*"],
       "@assets/*": ["src/assets/*"],
       "@types/*": ["src/types/*"],
     }

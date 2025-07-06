@@ -1,6 +1,13 @@
 import { Notyf } from 'notyf';
 import 'notyf/notyf.min.css';
 
+interface ToastOptions {
+  duration?: number;
+  background?: string;
+  icon?: { className: string; tagName: string; color: string };
+  // Add other Notyf.Options properties as needed
+}
+
 let notyfInstance: Notyf | null = null;
 let showCount = 0;
 let baseDuration = 1500;
@@ -58,6 +65,10 @@ function getNotyf(): Notyf {
   return notyfInstance;
 }
 
+/**
+ * Calculates a dynamic duration for the toast. showCount is decremented after the toast disappears.
+ * Note: If a toast is manually dismissed before its duration, showCount might not be accurate.
+ */
 function getDynamicDuration(): number {
   const duration = baseDuration + showCount * durationStep;
   showCount++;
@@ -65,7 +76,7 @@ function getDynamicDuration(): number {
   return duration;
 }
 
-function show(type: string, message: string, options?: any) {
+function show(type: string, message: string, options?: ToastOptions) {
   getNotyf().open({
     type,
     message,
@@ -74,18 +85,18 @@ function show(type: string, message: string, options?: any) {
   });
 }
 
-export function showSuccess(message: string, options?: any) {
+export function showSuccess(message: string, options?: ToastOptions) {
   show('success', message, options);
 }
 
-export function showError(message: string, options?: any) {
+export function showError(message: string, options?: ToastOptions) {
   show('error', message, options);
 }
 
-export function showInfo(message: string, options?: any) {
+export function showInfo(message: string, options?: ToastOptions) {
   show('info', message, options);
 }
 
-export function showWarning(message: string, options?: any) {
+export function showWarning(message: string, options?: ToastOptions) {
   show('warning', message, options);
 }

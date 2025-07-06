@@ -16,7 +16,9 @@ export const tocState = {
     if (raw) {
       try {
         JSON.parse(raw).forEach((key: string) => tocState.expandedGroups.add(key));
-      } catch {}
+      } catch (error) {
+        console.error("Error parsing expanded groups from localStorage:", error);
+      }
     }
   },
 

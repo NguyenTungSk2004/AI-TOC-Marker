@@ -7,8 +7,7 @@ interface ToggleParams {
 }
 
 export function toggleGroupVisibility({ groupEl, headingsList, key }: ToggleParams) {
-  const visible = headingsList.style.display === 'block';
-  headingsList.style.display = visible ? 'none' : 'block';
-  groupEl.setAttribute('aria-expanded', (!visible).toString());
-  tocState.toggle(key, !visible);
+  const isHidden = headingsList.classList.toggle('hidden');
+  groupEl.setAttribute('aria-expanded', (!isHidden).toString());
+  tocState.toggle(key, !isHidden);
 }

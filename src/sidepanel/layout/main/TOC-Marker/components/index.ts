@@ -14,7 +14,9 @@ export function createQuestionGroup(group: QAGroup, index: number): HTMLElement 
   headingsList.setAttribute('data-toc-heading-list', key);
 
   const isExpanded = tocState.expandedGroups.has(key);
-  headingsList.style.display = isExpanded ? 'block' : 'none';
+  if (!isExpanded) {
+    headingsList.classList.add('hidden');
+  }
   questionEl.setAttribute('aria-expanded', isExpanded.toString());
 
   questionEl.addEventListener('click', () => {

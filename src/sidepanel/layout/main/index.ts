@@ -1,6 +1,9 @@
 import { tocState } from '@sidepanel/state/tocState';
 import { createQuestionGroup } from './TOC-Marker/components';
 
+const HEADER_MARGIN_OFFSET = 10;
+const SURVEY_MARGIN_OFFSET = 30;
+
 export function renderTOC(main: HTMLElement, data: QAGroup[]) {
   main.innerHTML = '';
   tocState.load();
@@ -14,8 +17,8 @@ export function renderTOC(main: HTMLElement, data: QAGroup[]) {
     // Set chiều cao trừ header và survey
     main.style.height = `calc(100vh - ${headerHeight + surveyHeight}px)`;
     main.style.overflowY = 'auto';
-    main.style.marginTop =  `${headerHeight-10}px`; 
-    main.style.marginBottom = `${surveyHeight-30}px`;
+    main.style.marginTop =  `${headerHeight - HEADER_MARGIN_OFFSET}px`; 
+    main.style.marginBottom = `${surveyHeight - SURVEY_MARGIN_OFFSET}px`;
   });
 
   let secondLastGroupEl: HTMLElement | null = null;
@@ -38,12 +41,14 @@ export function renderTOC(main: HTMLElement, data: QAGroup[]) {
   });
 
   requestAnimationFrame(() => {
+    // Logic cuộn: Đảm bảo nhóm cuối cùng hiển thị nếu nhóm thứ hai cuối cùng không hiển thị
+    // và không có nhóm nào đang mở. Điều này giúp hiển thị mục TOC mới nhất.
     if (lastGroupEl && lastHeadingsEl && secondLastGroupEl) {
       const rect = secondLastGroupEl.getBoundingClientRect();
       const mainRect = main.getBoundingClientRect();
       const isOutOfView = rect.bottom > mainRect.bottom || rect.top < mainRect.top;
 
-      lastHeadingsEl.style.display = 'block';
+      lastHeadingsEl.classList.remove('hidden');
 
       if (!(isOutOfView && tocState.hasAnyOpen())) {
         main.scrollTop = main.scrollHeight;

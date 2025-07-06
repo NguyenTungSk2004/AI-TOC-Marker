@@ -10,11 +10,10 @@ export function createHeadingsList(headings: TOCHeading[]): HTMLUListElement {
 
     const span = document.createElement('span');
     span.textContent = h.title;
-    span.className =
-      'inline-block text-sm text-gray-300 hover:text-white px-2 py-1 cursor-pointer hover:bg-gray-700 rounded transition';
+    span.className = 'inline-block text-sm text-gray-300 hover:text-white px-2 py-1 cursor-pointer hover:bg-gray-700 rounded transition';
 
     if (h.id) {
-      span.onclick = (e) => handleHeadingClick(e, h.id);
+      span.addEventListener('click', (e) => handleHeadingClick(e, h.id));
     }
 
     li.appendChild(span);

@@ -35,43 +35,22 @@ chrome.tabs.onActivated.addListener(async ({ tabId }) => {
   const tab = await chrome.tabs.get(tabId);
   const isChatGPT = tab.url?.includes("chat.openai.com") || tab.url?.includes("chatgpt.com");
 
-  if (isChatGPT) {
-    await chrome.sidePanel.setOptions({
-      tabId,
-      path: "sidepanel.html",
-      enabled: true, 
-    });
-
-  }
-  if(!isChatGPT) {
-    await chrome.sidePanel.setOptions({
-      tabId,
-      enabled: false,
-    });
-
-    await chrome.sidePanel.setOptions({
-      tabId,
-      path: "",
-    });
-  }
+  await chrome.sidePanel.setOptions({
+    tabId,
+    path: isChatGPT ? "sidepanel.html" : '',
+    enabled: isChatGPT,
+  });
 });
 
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
   if (changeInfo.status === 'complete' && tab.url) {
     const isChatGPT = tab.url.includes("chat.openai.com") || tab.url.includes("chatgpt.com");
 
-    if (isChatGPT) {
-      chrome.sidePanel.setOptions({
-        tabId,
-        path: "sidepanel.html",
-        enabled: true
-      });
-    } else {
-      chrome.sidePanel.setOptions({
-        tabId,
-        enabled: false
-      });
-    }
+    chrome.sidePanel.setOptions({
+      tabId,
+      path: isChatGPT ? "sidepanel.html" : '',
+      enabled: isChatGPT,
+    });
   }
 });
 
