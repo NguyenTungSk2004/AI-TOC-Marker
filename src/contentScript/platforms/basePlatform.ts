@@ -34,6 +34,10 @@ export abstract class BaseChatPlatform {
   /**
    * Extract headings từ content element và tạo hierarchical structure
    * Hỗ trợ 3 levels: H2 -> H3 -> H4
+   * 
+   * Method chung cho tất cả platforms - chỉ cần truyền đúng content container
+   * ChatGPT: div.markdown container
+   * Grok: .response-content-markdown container
    */
   protected extractHeadingsFromContent(content: Element, startIndex: number): { headings: TOCHeading[], nextIndex: number } {
     const headings: TOCHeading[] = [];

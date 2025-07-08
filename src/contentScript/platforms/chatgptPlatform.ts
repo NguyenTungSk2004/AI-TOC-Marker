@@ -53,48 +53,13 @@ export class ChatGPTPlatform extends BaseChatPlatform {
    * ChatGPT render markdown trong div.markdown containers
    */
   private extractHeadingsFromAssistantResponse(assistantElement: Element, startIndex: number): { headings: TOCHeading[], nextIndex: number } {
-    const headings: TOCHeading[] = [];
-    let currentH2: TOCHeading | null = null;
-    let currentH3: TOCHeading | null = null;
-    let tocIndex = startIndex;
+    // Tìm markdown container trong ChatGPT assistant response
+    const markdownContainer = assistantElement.querySelector('div.markdown');
+    if (!markdownContainer) {
+      return { headings: [], nextIndex: startIndex };
+    }
 
-    // ChatGPT specific selector cho markdown headings
-    const headingElements = assistantElement.querySelectorAll("div.markdown h2, div.markdown h3, div.markdown h4");
-    
-    headingElements.forEach((el) => {
-      const text = el.textContent?.trim();
-      if (!text) return;
-
-      const tag = el.tagName.toLowerCase();
-      const tocId = this.createTOCId(tocIndex++);
-      this.addTOCAttributes(el, tocId);
-
-      const headingObj: TOCHeading = { title: text, id: tocId };
-
-      // Tạo hierarchical structure
-      if (tag === "h2") {
-        currentH2 = { ...headingObj, children: [] };
-        headings.push(currentH2);
-        currentH3 = null;
-      } else if (tag === "h3") {
-        const h3Item = { ...headingObj, children: [] };
-        if (currentH2) {
-          currentH2.children!.push(h3Item);
-        } else {
-          headings.push(h3Item);
-        }
-        currentH3 = h3Item;
-      } else if (tag === "h4") {
-        if (currentH3) {
-          currentH3.children!.push(headingObj);
-        } else if (currentH2) {
-          currentH2.children!.push(headingObj);
-        } else {
-          headings.push(headingObj);
-        }
-      }
-    });
-
-    return { headings, nextIndex: tocIndex };
+    // Sử dụng base class method với ChatGPT-specific container
+    return this.extractHeadingsFromContent(markdownContainer, startIndex);
   }
 }
