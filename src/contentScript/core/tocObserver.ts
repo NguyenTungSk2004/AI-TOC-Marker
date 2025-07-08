@@ -1,8 +1,8 @@
-import { extractTOCByQA } from "./extractTOCByQA";
+import { extractTOCByQA } from './extractTOCByQA'
 
 // Global state để quản lý observer lifecycle
-let currentObserver: MutationObserver | null = null;
-let currentDebounceTimer: ReturnType<typeof setTimeout> | null = null;
+let currentObserver: MutationObserver | null = null
+let currentDebounceTimer: ReturnType<typeof setTimeout> | null = null
 
 /**
  * Bắt đầu observe DOM changes để auto-extract TOC
@@ -10,38 +10,38 @@ let currentDebounceTimer: ReturnType<typeof setTimeout> | null = null;
  */
 export function observeTOCUpdates() {
   // Cleanup observer và timer hiện tại trước khi tạo mới
-  stopTOCObserver();
+  stopTOCObserver()
 
   currentObserver = new MutationObserver(() => {
     // Clear timer cũ nếu có
     if (currentDebounceTimer) {
-      clearTimeout(currentDebounceTimer);
+      clearTimeout(currentDebounceTimer)
     }
-    
+
     // Debounce 500ms để tránh extract liên tục khi DOM thay đổi
     currentDebounceTimer = setTimeout(() => {
-      currentDebounceTimer = null;
-      
+      currentDebounceTimer = null
+
       // Extract TOC và gửi về background script
-      const toc = extractTOCByQA();
+      const toc = extractTOCByQA()
       try {
         if (chrome.runtime?.id) {
-          chrome.runtime.sendMessage({ type: "TOC_DATA_FROM_CONTENT", toc });
-          chrome.storage.local.set({ toc });
+          chrome.runtime.sendMessage({ type: 'TOC_DATA_FROM_CONTENT', toc })
+          chrome.storage.local.set({ toc })
         }
       } catch (error) {
-        console.error("[TOC] Lỗi khi gửi TOC:", error);
+        console.error('[TOC] Lỗi khi gửi TOC:', error)
       }
-    }, 500);
-  });
+    }, 500)
+  })
 
   // Observe toàn bộ document body với deep monitoring
   currentObserver.observe(document.body, {
-    childList: true,    // Monitor thêm/xóa child elements
-    subtree: true,      // Monitor tất cả descendants
-  });
+    childList: true, // Monitor thêm/xóa child elements
+    subtree: true, // Monitor tất cả descendants
+  })
 
-  console.log('[TOC] Bắt đầu observe DOM changes');
+  console.log('[TOC] Bắt đầu observe DOM changes')
 }
 
 /**
@@ -51,15 +51,15 @@ export function observeTOCUpdates() {
 export function stopTOCObserver() {
   // Disconnect observer
   if (currentObserver) {
-    currentObserver.disconnect();
-    currentObserver = null;
-    console.log('[TOC] Đã dừng TOC observer');
+    currentObserver.disconnect()
+    currentObserver = null
+    console.log('[TOC] Đã dừng TOC observer')
   }
-  
+
   // Cancel pending extraction
   if (currentDebounceTimer) {
-    clearTimeout(currentDebounceTimer);
-    currentDebounceTimer = null;
-    console.log('[TOC] Đã hủy pending TOC extraction');
+    clearTimeout(currentDebounceTimer)
+    currentDebounceTimer = null
+    console.log('[TOC] Đã hủy pending TOC extraction')
   }
 }

@@ -1,7 +1,7 @@
-import { BaseChatPlatform } from './basePlatform';
-import { ChatGPTPlatform } from './chatgptPlatform';
-import { GrokPlatform } from './grokPlatform';
-import { ChatPlatform, detectChatPlatform } from '../../constants/chatgptUrls';
+import { BaseChatPlatform } from './basePlatform'
+import { ChatGPTPlatform } from './chatgptPlatform'
+import { GrokPlatform } from './grokPlatform'
+import { ChatPlatform, detectChatPlatform } from '../../constants/chatgptUrls'
 
 /**
  * Singleton Factory để quản lý platform instances
@@ -9,9 +9,9 @@ import { ChatPlatform, detectChatPlatform } from '../../constants/chatgptUrls';
  * Cache platform instance để tối ưu performance
  */
 export class PlatformFactory {
-  private static instance: PlatformFactory;
-  private currentPlatform: BaseChatPlatform | null = null;
-  private currentUrl: string = '';
+  private static instance: PlatformFactory
+  private currentPlatform: BaseChatPlatform | null = null
+  private currentUrl: string = ''
 
   private constructor() {}
 
@@ -20,9 +20,9 @@ export class PlatformFactory {
    */
   static getInstance(): PlatformFactory {
     if (!PlatformFactory.instance) {
-      PlatformFactory.instance = new PlatformFactory();
+      PlatformFactory.instance = new PlatformFactory()
     }
-    return PlatformFactory.instance;
+    return PlatformFactory.instance
   }
 
   /**
@@ -30,34 +30,34 @@ export class PlatformFactory {
    * Tự động detect và cache nếu URL thay đổi
    */
   getCurrentPlatform(): BaseChatPlatform | null {
-    const currentUrl = window.location.href;
-    
+    const currentUrl = window.location.href
+
     // Nếu URL không đổi và đã có platform, trả về platform cũ
     if (currentUrl === this.currentUrl && this.currentPlatform) {
-      return this.currentPlatform;
+      return this.currentPlatform
     }
 
     // URL thay đổi -> detect platform mới
-    this.currentUrl = currentUrl;
-    this.currentPlatform = this.createPlatformInstance(currentUrl);
-    
-    return this.currentPlatform;
+    this.currentUrl = currentUrl
+    this.currentPlatform = this.createPlatformInstance(currentUrl)
+
+    return this.currentPlatform
   }
 
   /**
    * Tạo platform instance dựa trên URL
    */
   private createPlatformInstance(url: string): BaseChatPlatform | null {
-    const platformType = detectChatPlatform(url);
+    const platformType = detectChatPlatform(url)
 
     switch (platformType) {
       case ChatPlatform.CHATGPT:
-        return new ChatGPTPlatform();
+        return new ChatGPTPlatform()
       case ChatPlatform.GROK:
-        return new GrokPlatform();
+        return new GrokPlatform()
       default:
-        console.warn(`[TOC] Platform không được hỗ trợ: ${url}`);
-        return null;
+        console.warn(`[TOC] Platform không được hỗ trợ: ${url}`)
+        return null
     }
   }
 
@@ -65,24 +65,24 @@ export class PlatformFactory {
    * Lấy platform type hiện tại
    */
   getCurrentPlatformType(): ChatPlatform {
-    return detectChatPlatform(window.location.href);
+    return detectChatPlatform(window.location.href)
   }
 
   /**
    * Kiểm tra platform hiện tại có được hỗ trợ không
    */
   isSupported(): boolean {
-    return this.getCurrentPlatform() !== null;
+    return this.getCurrentPlatform() !== null
   }
 
   /**
    * Reset factory state - dùng khi URL thay đổi
    */
   reset(): void {
-    this.currentPlatform = null;
-    this.currentUrl = '';
+    this.currentPlatform = null
+    this.currentUrl = ''
   }
 }
 
 // Export singleton instance để sử dụng trong toàn bộ app
-export const platformFactory = PlatformFactory.getInstance();
+export const platformFactory = PlatformFactory.getInstance()

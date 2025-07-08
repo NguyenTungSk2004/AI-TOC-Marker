@@ -1,45 +1,45 @@
-const STORAGE_KEY = 'expandedGroups';
+const STORAGE_KEY = 'expandedGroups'
 
 export const tocState = {
   expandedGroups: new Set<string>(),
 
   hasAnyOpen: () => {
-    return tocState.expandedGroups.size > 0;
+    return tocState.expandedGroups.size > 0
   },
-  
+
   isClosed: () => {
-    return tocState.expandedGroups.size === 0;
+    return tocState.expandedGroups.size === 0
   },
 
   load: () => {
-    const raw = localStorage.getItem(STORAGE_KEY);
+    const raw = localStorage.getItem(STORAGE_KEY)
     if (raw) {
       try {
-        JSON.parse(raw).forEach((key: string) => tocState.expandedGroups.add(key));
+        JSON.parse(raw).forEach((key: string) => tocState.expandedGroups.add(key))
       } catch (error) {
-        console.error("Error parsing expanded groups from localStorage:", error);
+        console.error('Error parsing expanded groups from localStorage:', error)
       }
     }
   },
 
   save: () => {
-    const arr = Array.from(tocState.expandedGroups);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(arr));
+    const arr = Array.from(tocState.expandedGroups)
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(arr))
   },
 
   openAll: (keys: string[]) => {
-    keys.forEach(k => tocState.expandedGroups.add(k));
-    tocState.save();
+    keys.forEach((k) => tocState.expandedGroups.add(k))
+    tocState.save()
   },
 
   closeAll: () => {
-    tocState.expandedGroups.clear();
-    tocState.save();
+    tocState.expandedGroups.clear()
+    tocState.save()
   },
 
   toggle: (key: string, isOpen: boolean) => {
-    if (isOpen) tocState.expandedGroups.add(key);
-    else tocState.expandedGroups.delete(key);
-    tocState.save();
-  }
-};
+    if (isOpen) tocState.expandedGroups.add(key)
+    else tocState.expandedGroups.delete(key)
+    tocState.save()
+  },
+}

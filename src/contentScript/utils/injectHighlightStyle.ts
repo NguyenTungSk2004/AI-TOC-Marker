@@ -1,5 +1,5 @@
 export function injectHighlightStyle() {
-  const style = document.createElement("style");
+  const style = document.createElement('style')
   style.textContent = `
     [data-toc-highlight] {
       scroll-margin-top: 100px;
@@ -13,6 +13,6 @@ export function injectHighlightStyle() {
       transition: background-color 1.2s ease;
       background-color: transparent;
     }
-  `;
-  document.head.appendChild(style);
+  `
+  document.head.appendChild(style)
 }

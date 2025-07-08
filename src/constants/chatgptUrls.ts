@@ -4,7 +4,7 @@
 export enum ChatPlatform {
   CHATGPT = 'chatgpt',
   GROK = 'grok',
-  UNKNOWN = 'unknown'
+  UNKNOWN = 'unknown',
 }
 
 /**
@@ -13,27 +13,23 @@ export enum ChatPlatform {
  */
 export const CHAT_BOT_CONFIGS = {
   [ChatPlatform.CHATGPT]: {
-    patterns: [
-      /^https:\/\/chat\.openai\.com\/.*/,
-      /^https:\/\/chatgpt\.com\/.*/
-    ],
-    domains: ['chat.openai.com', 'chatgpt.com']
+    patterns: [/^https:\/\/chat\.openai\.com\/.*/, /^https:\/\/chatgpt\.com\/.*/],
+    domains: ['chat.openai.com', 'chatgpt.com'],
   },
   [ChatPlatform.GROK]: {
     patterns: [
-      /^https:\/\/x\.ai\/grok.*/,  // Grok thực tế sử dụng x.ai/grok
-      /^https:\/\/grok\.com\/.*/
+      /^https:\/\/x\.ai\/grok.*/, // Grok thực tế sử dụng x.ai/grok
+      /^https:\/\/grok\.com\/.*/,
     ],
-    domains: ['x.ai', 'grok.com']
-  }
-};
+    domains: ['x.ai', 'grok.com'],
+  },
+}
 
 // Tạo danh sách domains để sử dụng trong manifest
-export const CHAT_BOT_URLS = Object.values(CHAT_BOT_CONFIGS)
-  .flatMap(config => config.domains);
+export const CHAT_BOT_URLS = Object.values(CHAT_BOT_CONFIGS).flatMap((config) => config.domains)
 
 // Tạo match patterns cho content scripts
-export const CHAT_BOT_MATCH_PATTERNS = CHAT_BOT_URLS.map(url => `*://${url}/*`);
+export const CHAT_BOT_MATCH_PATTERNS = CHAT_BOT_URLS.map((url) => `*://${url}/*`)
 
 /**
  * Phát hiện platform dựa trên URL hiện tại
@@ -41,16 +37,16 @@ export const CHAT_BOT_MATCH_PATTERNS = CHAT_BOT_URLS.map(url => `*://${url}/*`);
  */
 export function detectChatPlatform(url: string): ChatPlatform {
   for (const [platform, config] of Object.entries(CHAT_BOT_CONFIGS)) {
-    if (config.patterns.some(pattern => pattern.test(url))) {
-      return platform as ChatPlatform;
+    if (config.patterns.some((pattern) => pattern.test(url))) {
+      return platform as ChatPlatform
     }
   }
-  return ChatPlatform.UNKNOWN;
+  return ChatPlatform.UNKNOWN
 }
 
 /**
  * Kiểm tra xem URL có phải là chatbot được hỗ trợ không
  */
 export function isChatBotUrl(url: string): boolean {
-  return detectChatPlatform(url) !== ChatPlatform.UNKNOWN;
+  return detectChatPlatform(url) !== ChatPlatform.UNKNOWN
 }
