@@ -1,57 +1,33 @@
+import { QAGroup } from '../../types/toc.types';
+import { platformFactory } from '../platforms/platformFactory';
+
+/**
+ * Main function để extract TOC từ conversation
+ * Sử dụng platform factory để tự động detect platform và áp dụng logic phù hợp
+ * 
+ * Flow:
+ * 1. Detect platform hiện tại (ChatGPT/Grok)
+ * 2. Sử dụng platform-specific extraction logic
+ * 3. Trả về QAGroup[] với hierarchical TOC structure
+ */
 export function extractTOCByQA(): QAGroup[] {
-  const result: QAGroup[] = [];
-  const turns = Array.from(document.querySelectorAll("div.group\\/conversation-turn"));
-  let tocIndex = 0;
-
-  for (let i = 0; i < turns.length - 1; i++) {
-    const userTurn = turns[i];
-    const assistantTurn = turns[i + 1];
-
-    const userRole = userTurn.querySelector('[data-message-author-role="user"]');
-    const assistantRole = assistantTurn.querySelector('[data-message-author-role="assistant"]');
-
-    if (!userRole || !assistantRole) continue;
-
-    const question = userRole.querySelector(".whitespace-pre-wrap")?.textContent?.trim() || "";
-
-    const headings: TOCHeading[] = [];
-    let currentH2: TOCHeading | null = null;
-    let currentH3: TOCHeading | null = null;
-
-    assistantRole.querySelectorAll("div.markdown h2, div.markdown h3, div.markdown h4").forEach((el) => {
-      const text = el.textContent?.trim();
-      if (!text) return;
-
-      const tag = el.tagName.toLowerCase();
-      const tocId = `toc-${tocIndex++}`;
-      el.setAttribute("id", tocId);
-      el.setAttribute("data-toc-highlight", "");
-
-      const headingObj: TOCHeading = { title: text, id: tocId };
-
-      if (tag === "h2") {
-        currentH2 = { ...headingObj, children: [] };
-        headings.push(currentH2);
-        currentH3 = null;
-      } else if (tag === "h3" && currentH2) {
-        currentH3 = { ...headingObj, children: [] };
-        currentH2.children!.push(currentH3);
-      } else if (tag === "h4" && currentH3) {
-        currentH3.children!.push(headingObj);
-      } else if (tag === "h3") {
-        currentH3 = { ...headingObj, children: [] };
-        headings.push(currentH3);
-      } else if (tag === "h4") {
-        headings.push(headingObj);
-      }
-    });
-
-    if (headings.length > 0) {
-      result.push({ question, headings });
-    }
-
-    i++; // skip assistant
+  // Lấy platform instance từ factory
+  const platform = platformFactory.getCurrentPlatform();
+  
+  if (!platform) {
+    console.warn('[TOC] Không phát hiện được platform hỗ trợ cho URL:', window.location.href);
+    return [];
   }
 
-  return result;
+  try {
+    // Extract TOC sử dụng platform-specific logic
+    const result = platform.extractTOC();
+    
+    console.log(`[TOC] Extract thành công ${result.length} TOC groups từ ${platformFactory.getCurrentPlatformType()}`);
+    return result;
+    
+  } catch (error) {
+    console.error('[TOC] Lỗi khi extract TOC:', error);
+    return [];
+  }
 }

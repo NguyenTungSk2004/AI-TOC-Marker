@@ -18,4 +18,15 @@ document.addEventListener('DOMContentLoaded', () => {
   app.appendChild(footer);
 
   setupTOCMessageHandler(main);
+
+  // Request current tab platform info immediately when sidepanel opens
+  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    if (tabs[0]?.url) {
+      chrome.runtime.sendMessage({ 
+        type: 'REQUEST_CURRENT_PLATFORM', 
+        tabUrl: tabs[0].url,
+        tabId: tabs[0].id 
+      });
+    }
+  });
 });
