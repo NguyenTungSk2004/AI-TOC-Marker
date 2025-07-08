@@ -1,5 +1,6 @@
 import { defineManifest } from '@crxjs/vite-plugin'
 import packageData from '../package.json'
+import { CHAT_BOT_MATCH_PATTERNS } from './constants/chatgptUrls';
 
 //@ts-ignore
 const isDev = process.env.NODE_ENV == 'development'
@@ -21,7 +22,9 @@ export default defineManifest({
   },
   content_scripts: [
     {
-      matches: ['*://chat.openai.com/*', '*://chatgpt.com/*'],
+      matches: [
+        ...CHAT_BOT_MATCH_PATTERNS,
+      ],
       js: ['src/contentScript/index.ts'],
       run_at: "document_idle"
     },

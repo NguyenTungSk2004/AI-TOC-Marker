@@ -1,3 +1,5 @@
+import { CHAT_BOT_URLS } from "../constants/chatgptUrls";
+
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.type === 'TOC_REQUEST') {
     chrome.storage.local.get(['toc'], (result) => {
@@ -22,8 +24,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     } catch (error) {
       console.warn('[TOC] Không thể gửi dữ liệu TOC:', error);
     }
-
-    sendResponse({ status: 'received' });
   }
 });
 
@@ -33,23 +33,24 @@ chrome.runtime.onInstalled.addListener(() => {
 
 chrome.tabs.onActivated.addListener(async ({ tabId }) => {
   const tab = await chrome.tabs.get(tabId);
-  const isChatGPT = tab.url?.includes("chat.openai.com") || tab.url?.includes("chatgpt.com");
+
+  const isChatBot = CHAT_BOT_URLS.some(url => tab.url?.includes(url));
 
   await chrome.sidePanel.setOptions({
     tabId,
-    path: isChatGPT ? "sidepanel.html" : '',
-    enabled: isChatGPT,
+    path: isChatBot ? "sidepanel.html" : '',
+    enabled: isChatBot,
   });
 });
 
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
   if (changeInfo.status === 'complete' && tab.url) {
-    const isChatGPT = tab.url.includes("chat.openai.com") || tab.url.includes("chatgpt.com");
+    const isChatBot = CHAT_BOT_URLS.some(url => tab.url.includes(url));
 
     chrome.sidePanel.setOptions({
       tabId,
-      path: isChatGPT ? "sidepanel.html" : '',
-      enabled: isChatGPT,
+      path: isChatBot ? "sidepanel.html" : '',
+      enabled: isChatBot,
     });
   }
 });
