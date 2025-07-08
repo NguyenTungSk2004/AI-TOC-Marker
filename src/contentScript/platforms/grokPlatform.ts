@@ -1,6 +1,6 @@
-import { BaseChatPlatform } from './basePlatform';
-import { QAGroup, TOCHeading } from '../../types/toc.types';
-import { ChatPlatform } from '../../constants/chatgptUrls';
+import { BaseChatPlatform } from './basePlatform'
+import { QAGroup, TOCHeading } from '../../types/toc.types'
+import { ChatPlatform } from '../../constants/chatgptUrls'
 
 /**
  * Implementation cho Grok platform
@@ -9,7 +9,7 @@ import { ChatPlatform } from '../../constants/chatgptUrls';
  */
 export class GrokPlatform extends BaseChatPlatform {
   constructor() {
-    super(ChatPlatform.GROK);
+    super(ChatPlatform.GROK)
   }
 
   /**
@@ -19,78 +19,49 @@ export class GrokPlatform extends BaseChatPlatform {
    */
   extractTOC(): QAGroup[] {
     const result: QAGroup[] = [];
+    const turns = Array.from(document.querySelectorAll('.flex.flex-col.items-center'));
     let tocIndex = 0;
 
-    // Tìm tất cả message containers trong Grok
-    const allMessages = Array.from(document.querySelectorAll('.flex.flex-col.items-center'));
-    
-    // Ghép messages thành các cặp user-assistant
-    const messagePairs = this.findUserAssistantPairs(allMessages);
+    // Duyệt qua các conversation turns theo cặp (user + assistant)
+    for (let i = 0; i < turns.length - 1; i++) {
+      const userTurn = turns[i];
+      const assistantTurn = turns[i + 1];
 
-    // Xử lý từng cặp message
-    for (const pair of messagePairs) {
-      if (!pair.user || !pair.assistant) continue;
+      // Tìm user và assistant message elements
+      const userElement = userTurn.querySelector('.message-bubble .whitespace-pre-wrap');
+      const assistantElement = assistantTurn.querySelector('.response-content-markdown');
+
+      if (!userElement || !assistantElement) continue;
 
       // Extract question từ user message
-      const question = this.extractUserQuestion(pair.user);
+      const question = userElement.textContent?.trim() || "";
 
       // Extract headings từ assistant response
-      const headings = this.extractAssistantHeadings(pair.assistant, tocIndex);
-      
+      const headings = this.extractHeadingsFromAssistantResponse(assistantTurn, tocIndex);
+
       if (headings.headings.length > 0) {
         result.push({ question, headings: headings.headings });
         tocIndex = headings.nextIndex;
       }
+
+      i++; // Skip assistant turn trong iteration tiếp theo
     }
 
-    console.log(`[TOC] Grok: Tìm thấy ${messagePairs.length} cặp tin nhắn, extract được ${result.length} TOC groups`);
     return result;
-  }
-
-  /**
-   * Tìm và ghép các message thành cặp user-assistant
-   * Grok có thể có structure phức tạp nên cần algorithm smart
-   */
-  private findUserAssistantPairs(allMessages: Element[]): { user: Element | null, assistant: Element | null }[] {
-    const pairs: { user: Element | null, assistant: Element | null }[] = [];
-    
-    for (let i = 0; i < allMessages.length - 1; i++) {
-      const current = allMessages[i];
-      const next = allMessages[i + 1];
-      
-      // Kiểm tra xem current có phải user message và next có phải assistant không
-      const currentIsUser = current.querySelector('.message-bubble .whitespace-pre-wrap');
-      const nextIsAssistant = next.querySelector('.response-content-markdown');
-      
-      if (currentIsUser && nextIsAssistant) {
-        pairs.push({ user: current, assistant: next });
-        i++; // Skip assistant message trong iteration tiếp theo
-      }
-    }
-    
-    return pairs;
-  }
-
-  /**
-   * Extract question text từ user message
-   * Grok user messages nằm trong .message-bubble containers
-   */
-  private extractUserQuestion(userElement: Element): string {
-    const userText = userElement.querySelector('.message-bubble .whitespace-pre-wrap');
-    return userText?.textContent?.trim() || '';
   }
 
   /**
    * Extract headings từ assistant response
    * Grok assistant responses có .response-content-markdown containers
    */
-  private extractAssistantHeadings(assistantElement: Element, startIndex: number): { headings: TOCHeading[], nextIndex: number } {
-    const assistantContent = assistantElement.querySelector('.response-content-markdown');
-    if (!assistantContent) {
+  private extractHeadingsFromAssistantResponse(assistantElement: Element, startIndex: number): { headings: TOCHeading[], nextIndex: number } {
+    // Tìm response content container trong Grok assistant response
+    const markdownContainer = assistantElement.querySelector('.response-content-markdown');
+    if (!markdownContainer) {
       return { headings: [], nextIndex: startIndex };
     }
 
-    // Sử dụng base class method để extract headings
-    return this.extractHeadingsFromContent(assistantContent, startIndex);
+    // Sử dụng base class method với Grok-specific container
+    return this.extractHeadingsFromContent(markdownContainer, startIndex);
   }
 }
