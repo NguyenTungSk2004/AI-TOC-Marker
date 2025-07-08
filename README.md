@@ -1,41 +1,64 @@
-# 🌟 AI TOC Marker – Tiện ích tạo mục lục cho ChatGPT siêu nhanh và thông minh
+# 🌟 AI TOC Marker v2.0.0 – Tiện ích tạo mục lục đa nền tảng cho ChatGPT & Grok
 
-**AI TOC Marker** là tiện ích mở rộng dành cho các trình duyệt dựa trên **Chromium** (như **Google Chrome**, **Microsoft Edge**, v.v.), hỗ trợ **tự động tạo mục lục, đánh dấu và điều hướng các tiêu đề (heading)** trong hội thoại ChatGPT. Rất phù hợp để **quản lý nội dung dài, tra cứu nhanh thông tin và nâng cao hiệu quả học tập, làm việc**.
+**AI TOC Marker** là tiện ích mở rộng Chrome **hỗ trợ đa nền tảng AI** (ChatGPT, Grok) với khả năng **tự động tạo mục lục, đánh dấu và điều hướng các tiêu đề (heading)** trong hội thoại AI. Được thiết kế để **quản lý nội dung dài, tra cứu nhanh thông tin và nâng cao hiệu quả học tập, làm việc** trên các platform AI hàng đầu.
 
 🔗 **Hướng dẫn chi tiết & bản demo:** [https://nguyentungsk2004.github.io/AI-TOC-Marker/](https://nguyentungsk2004.github.io/AI-TOC-Marker/)
 
 ---
 
-## 🚀 Tính năng nổi bật
+## 🚀 Tính năng nổi bật v2.0.0
 
-* 🔍 **Tự động phát hiện tiêu đề** `H1`, `H2`,... trong nội dung phản hồi của ChatGPT
+### 🌐 **Hỗ trợ đa nền tảng AI** (MỚI!)
+* 🤖 **ChatGPT**: chat.openai.com, chatgpt.com
+* 🚀 **Grok**: x.ai/grok
+* 🔄 **Tab switching mượt mà** - không cần reload
+* 📱 **Platform detection tự động** - nhận biết thông minh
+
+### 📝 **Tính năng cốt lõi**
+* 🔍 **Tự động phát hiện tiêu đề** `H1`, `H2`, `H3`, `H4` trong nội dung AI
 * 🧭 **Điều hướng tức thì** đến phần nội dung mong muốn chỉ với một cú nhấp chuột
 * 🌈 **Làm nổi bật nội dung chính** để dễ dàng theo dõi
 * 🔐 **Hoạt động hoàn toàn offline** – không cần tài khoản, không thu thập dữ liệu
-* 🔎 **Tìm kiếm tiêu đề nâng cao** – lọc theo từ khoá, hiển thị kết quả khớp, nhấn để chuyển đến ngay
+* 🔎 **Tìm kiếm tiêu đề nâng cao** – lọc theo từ khoá, hiển thị kết quả khớp
 * ⚡ **Cài đặt nhanh chóng, dễ sử dụng** chỉ với vài bước đơn giản
-* 🧑‍💻 **Mã nguồn mở, dễ tuỳ biến** theo nhu cầu
-* 🌗 **Giao diện tối ưu cho Dark Mode** (Light Mode đang được phát triển)
+
+### 🎨 **UI/UX tối ưu**
+* 🎯 **Title động theo platform** - hiển thị 🤖 ChatGPT hoặc 🚀 Grok
+* 🌗 **Giao diện tối ưu cho Dark Mode**
+* 🧠 **Ghi nhớ tab đã mở trong hội thoại** – tiếp tục công việc mượt mà
+* 🔔 **Thông báo rõ ràng hơn** – cập nhật trạng thái tức thì
 
 ---
 
-## 🆕 Có gì mới trong phiên bản chính thức v1.0.0?
+## 🆕 Có gì mới trong phiên bản v2.0.0?
 
-✨ **Phát hành chính thức** với nhiều cải tiến vượt bậc:
+### 🌟 **Breakthrough Features**
 
-* 🎨 **Giao diện hiện đại, trực quan** – thân thiện với người dùng
-* 🔔 **Thông báo rõ ràng hơn** – cập nhật trạng thái tức thì
-* 🧠 **Ghi nhớ tab đã mở trong hội thoại** – tiếp tục công việc mượt mà
-* ⚙️ **Tối ưu hiệu suất xử lý DOM** – hoạt động nhanh, mượt
-* 🐞 **Sửa nhiều lỗi nhỏ** – tăng độ ổn định
-* 📦 **Gói build gọn nhẹ hơn** – tải nhanh, ít file dư thừa
+#### 🚀 **Multi-Platform Support**
+* ✅ **Grok Integration** - Hỗ trợ đầy đủ cho Grok AI (x.ai/grok)
+* ✅ **Platform Factory Pattern** - Architecture mở rộng dễ dàng
+* ✅ **Smart URL Detection** - Regex-based matching chính xác
+* ✅ **Dynamic Title Updates** - Hiển thị platform hiện tại
+
+#### 🔧 **Technical Improvements**
+* ⚡ **Enhanced Tab Switching** - Không flash content, mượt mà
+* 🧹 **Optimized Code Architecture** - Clean, maintainable, scalable
+* 🔄 **Better State Management** - Sync hoàn hảo giữa tabs
+* 🛡️ **Race Condition Prevention** - Stable khi switch nhanh
+
+#### 💻 **Developer Experience**
+* 🧑‍💻 **TypeScript cải tiến** - Better type safety
+* 📝 **Comment tiếng Việt** - Dễ hiểu, dễ maintain
+* 🏗️ **Modular Platform System** - Thêm platform mới dễ dàng
+* 🐞 **Enhanced Error Handling** - Robust và reliable
+
 ---
 
 ## 🎮 Demo thực tế
 
 ![AI TOC Marker demo](https://github.com/NguyenTungSk2004/AI-TOC-Marker/blob/main/public/img/demo-guide.gif)
 
-> 🖼 *Minh hoạ cách AI TOC Marker tạo mục lục, tìm kiếm và điều hướng tiêu đề trong cuộc hội thoại ChatGPT.*
+> 🖼 *Minh hoạ cách AI TOC Marker hoạt động trên cả ChatGPT và Grok với khả năng tự động nhận diện platform và tạo mục lục.*
 
 ---
 
@@ -43,10 +66,10 @@
 
 1. 📦 Tải file `.zip` bên dưới
 2. 🗂 Giải nén file
-3. 🌐 Truy cập `[yourbrower]://extensions`
+3. 🌐 Truy cập `chrome://extensions`
 4. 🔧 Bật **Developer Mode** (Chế độ nhà phát triển)
 5. 📂 Chọn **Load unpacked** → chọn thư mục đã giải nén
-6. ✅ Mở ChatGPT → tiện ích sẽ tự động hoạt động
+6. ✅ Mở ChatGPT hoặc Grok → tiện ích sẽ tự động hoạt động
 
 📁 Trong thư mục tải về có kèm file `HOW-TO-INSTALL.html` hướng dẫn chi tiết bằng hình ảnh.
 
@@ -57,38 +80,70 @@
 
 | 📌 Phiên bản | 📝 Thay đổi chính                                | 🔗 Link tải                                                                                                                       |
 | ------------ | ------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------- |
+| `2.0.0`      | 🚀 Hỗ trợ đa nền tảng (ChatGPT + Grok), Architecture mới | [⬇️ Tải AI-TOC-Marker v2.0.0](https://github.com/NguyenTungSk2004/AI-TOC-Marker/releases/download/v2.0.0/AI-TOC-Marker-2.0.0.zip) |
 | `1.0.0`      | UI mới, tối ưu hiệu suất, ghi nhớ trạng thái tab | [⬇️ Tải AI-TOC-Marker v1.0.0](https://github.com/NguyenTungSk2004/AI-TOC-Marker/releases/download/v1.0.0/AI-TOC-Marker-1.0.0.zip) |
 | `0.1.0`      | Giao diện dark mode, tìm kiếm nâng cao           | [⬇️ Tải AI-TOC-Marker v0.1.0](https://github.com/NguyenTungSk2004/AI-TOC-Marker/releases/download/v0.1.0/AI-TOC-Marker-0.1.0.zip) |
-| `0.0.1`      | Phiên bản đầu tiên                               | [⬇️ Tải AI-TOC-Marker v0.0.1](https://github.com/NguyenTungSk2004/AI-TOC-Marker/releases/download/v0.0.1/AI-TOC-Marker-0.0.1.zip) |
+
+---
+
+## 🎯 Hỗ trợ nền tảng AI
+
+### 🤖 **ChatGPT**
+* 🌐 **chat.openai.com**
+* 🌐 **chatgpt.com**
+* 🔍 **Auto-detect** conversation turns
+* 📋 **Hierarchical TOC** từ markdown content
+
+### 🚀 **Grok**
+* 🌐 **x.ai/grok**
+* 🔍 **Smart message pairing**
+* 📋 **Advanced DOM parsing**
+* 🎯 **Flex container handling**
 
 ---
 
 ## 👥 Phù hợp với ai?
 
-* 🧑 Người dùng ChatGPT thường xuyên
-* 🎓 Sinh viên, giảng viên, nhà nghiên cứu
-* 💼 Nhân viên văn phòng, copywriter, marketer
-* 🧑‍💻 Lập trình viên theo dõi nội dung AI phức tạp
+* 🧑 **Power users** của ChatGPT và Grok
+* 🎓 **Sinh viên, giảng viên, nhà nghiên cứu** sử dụng AI
+* 💼 **Nhân viên văn phòng, copywriter, marketer** làm việc với AI
+* 🧑‍💻 **Lập trình viên, data scientist** theo dõi nội dung AI phức tạp
+* 🏢 **Doanh nghiệp** sử dụng multiple AI platforms
 
 ---
 
 ## ⚙️ Thông tin kỹ thuật cho developer
 
-* ⚡ Framework: `Vite + Vanilla JS`
-* 📄 Manifest V3
-* 📦 Script build: `npm run zip`
+### 🏗️ **Architecture**
+* ⚡ **Framework**: Vite + TypeScript
+* 📄 **Manifest V3** - Chrome Extensions
+* 🏭 **Platform Factory Pattern** - Extensible design
+* 🧩 **Modular Components** - Clean separation
 
-### 🧪 Cài local để phát triển:
+### 🔧 **Platform System**
+* 🎯 **BasePlatform** - Abstract class với common functionality
+* 🤖 **ChatGPTPlatform** - ChatGPT-specific implementation
+* 🚀 **GrokPlatform** - Grok-specific implementation
+* 🏭 **PlatformFactory** - Singleton pattern với auto-detection
 
+### 🧪 **Development Setup**
 ```bash
+# Cài đặt dependencies
 npm install
+
+# Development mode
 npm run dev
+
+# Build production
+npm run build
+
+# Tạo zip file
+npm run zip
 ```
 
-### 🔧 Build và đóng gói:
-
+### 📦 **Build Script**
 ```bash
-npm run build
+# Build và đóng gói một lệnh
 npm run zip
 ```
 
@@ -97,6 +152,20 @@ npm run zip
 ## 📦 Scaffold dự án
 
 Khởi tạo từ scaffold: [create-chrome-ext](https://github.com/guocaoyi/create-chrome-ext)
+
+---
+
+## 🔄 Roadmap tương lai
+
+### 🎯 **v2.1.0 (Coming Soon)**
+* 🤖 **Claude Support** - Anthropic Claude integration
+* 🔮 **Gemini Support** - Google Gemini integration
+* 🌍 **i18n Support** - Multi-language interface
+
+### 🎯 **v2.2.0 (Planned)**
+* 🎨 **Light Mode** - Full light theme support
+* 📱 **Mobile Optimization** - Better mobile experience
+* 🔄 **Sync Settings** - Cross-device synchronization
 
 ---
 
@@ -125,5 +194,12 @@ Bạn được phép:
 
 * 💬 Mở **Issue** để phản hồi lỗi hoặc đề xuất
 * 🤝 Gửi **Pull Request** để đóng góp mã nguồn
+* 🆕 **Đề xuất platform mới** để hỗ trợ
 
 > ⭐ Nếu bạn thấy tiện ích hữu ích, hãy ⭐ repo để ủng hộ nhé!
+
+---
+
+## 🏷️ Tags
+
+`chrome-extension` `chatgpt` `grok` `ai-tools` `toc-generator` `productivity` `typescript` `manifest-v3` `multi-platform` `ai-assistant` `table-of-contents` `browser-extension` `developer-tools` `automation` `vietnamese`
