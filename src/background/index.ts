@@ -27,11 +27,17 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             chrome.storage.local.get(['toc'], (result) => {
               try {
                 const platform = detectChatPlatform(activeTab.url!)
+                // Chỉ gửi nếu có sidepanel listener
                 chrome.runtime.sendMessage({
                   type: 'TOC_DATA',
                   toc: result.toc || [],
                   tabUrl: activeTab.url,
                   platform,
+                }, () => {
+                  // Bỏ qua lỗi nếu không có receiver
+                  if (chrome.runtime.lastError) {
+                    // Silently ignore - no sidepanel listening
+                  }
                 })
               } catch (error) {
                 console.warn('[TOC] Lỗi gửi TOC từ storage:', error)
@@ -41,12 +47,19 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       } else {
         // Không phải chatbot tab -> gửi TOC rỗng
         try {
-          chrome.runtime.sendMessage({ type: 'TOC_DATA', toc: [] })
+          chrome.runtime.sendMessage({ type: 'TOC_DATA', toc: [] }, () => {
+            // Bỏ qua lỗi nếu không có receiver
+            if (chrome.runtime.lastError) {
+              // Silently ignore - no sidepanel listening
+            }
+          })
         } catch (error) {
           console.warn('[TOC] Lỗi gửi TOC rỗng:', error)
         }
       }
     })
+    // Không return true vì không cần sendResponse
+    return false
   }
 
   /**
@@ -71,13 +84,15 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         },
         () => {
           if (chrome.runtime.lastError) {
-            console.warn('[TOC] Sidepanel chưa sẵn sàng:', chrome.runtime.lastError.message)
+            // Silently ignore - sidepanel might not be open
           }
         },
       )
     } catch (error) {
       console.warn('[TOC] Lỗi gửi TOC data:', error)
     }
+    // Không return true vì không cần sendResponse
+    return false
   }
 
   /**
@@ -95,11 +110,19 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         platform,
         tabUrl,
         tabId: request.tabId,
+      }, () => {
+        if (chrome.runtime.lastError) {
+          // Silently ignore - sidepanel might not be open
+        }
       })
     } catch (error) {
       console.log('[TOC] Lỗi gửi platform info:', error)
     }
+    // Không return true vì không cần sendResponse
+    return false
   }
+
+  return false
 })
 
 /**
@@ -133,6 +156,10 @@ chrome.tabs.onActivated.addListener(async ({ tabId }) => {
         platform,
         tabUrl: tab.url,
         tabId,
+      }, () => {
+        if (chrome.runtime.lastError) {
+          // Silently ignore - sidepanel might not be open
+        }
       })
 
       // Trigger TOC extraction cho tab mới
@@ -169,6 +196,10 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
           platform,
           tabUrl: tab.url,
           tabId,
+        }, () => {
+          if (chrome.runtime.lastError) {
+            // Silently ignore - sidepanel might not be open
+          }
         })
       } catch (error) {
         console.log('[TOC] Lỗi gửi platform change message:', error)
