@@ -1,0 +1,25 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://nguyentungsk2004.github.io/AI-TOC-Marker/sitemap.xml
+
+# SEO directives
+Allow: /assets/
+Allow: /page/guide/
+
+# Block access to potential development files
+Disallow: /node_modules/
+Disallow: /.git/
+Disallow: /*.log$
+Disallow: /*.tmp$
+
+# Allow search engines to crawl images and CSS
+Allow: /assets/img/
+Allow: /assets/css/
+Allow: /assets/js/
+Allow: /assets/logo/
+Allow: /assets/gif/
+
+# Crawl delay (optional)
+Crawl-delay: 1
