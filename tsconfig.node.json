@@ -9,10 +9,6 @@
     "paths": {
       "@utils/*": ["src/utils/*"],
       "@sidepanel/*": ["src/sidepanel/*"],
-      "@contentScript/*": ["src/contentScript/*"],
-      "@background/*": ["src/background/*"],
-      "@assets/*": ["src/assets/*"],
-      "@types/*": ["src/types/*"],
     }
   },
   "include": ["src","vite.config.ts"]

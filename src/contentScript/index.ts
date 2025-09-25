@@ -9,27 +9,15 @@ import { platformFactory } from './platforms/platformFactory'
  * Chỉ hoạt động trên các platform được hỗ trợ (ChatGPT, Grok)
  */
 function initializeExtension() {
-  console.log('[TOC] Khởi tạo extension cho URL:', window.location.href)
-
-  // Kiểm tra platform có được hỗ trợ không
   if (!platformFactory.isSupported()) {
-    console.log('[TOC] Platform không được hỗ trợ, bỏ qua khởi tạo')
+    console.warn('[TOC] Platform không được hỗ trợ, bỏ qua khởi tạo')
     return
   }
-
-  console.log('[TOC] Phát hiện platform:', platformFactory.getCurrentPlatformType())
-
-  // Inject CSS cho highlighting
   injectHighlightStyle()
-
-  // Bắt đầu observe DOM để auto-extract TOC
   observeTOCUpdates()
-
-  // Setup scroll to heading functionality
   setupScrollToHeading()
 }
 
-// Khởi tạo lần đầu khi page load
 initializeExtension()
 
 /**
@@ -38,8 +26,6 @@ initializeExtension()
  */
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.type === 'EXTRACT_TOC_NOW') {
-    console.log('[TOC] Nhận yêu cầu extract TOC ngay lập tức')
-
     // Extract TOC ngay lập tức và gửi về background
     if (platformFactory.isSupported()) {
       const platform = platformFactory.getCurrentPlatform()
@@ -48,16 +34,13 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         try {
           if (chrome.runtime?.id) {
             chrome.runtime.sendMessage({ type: 'TOC_DATA_FROM_CONTENT', toc })
-            console.log(
-              `[TOC] Gửi ${toc.length} TOC groups ngay lập tức cho ${platformFactory.getCurrentPlatformType()}`,
-            )
           }
         } catch (error) {
           console.error('[TOC] Lỗi khi gửi TOC ngay lập tức:', error)
         }
       }
     } else {
-      console.log('[TOC] Platform không hỗ trợ extract ngay lập tức')
+      console.warn('[TOC] Platform không hỗ trợ extract ngay lập tức')
     }
   }
 })
@@ -67,13 +50,9 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
  * Quan trọng để đảm bảo extension hoạt động đúng khi navigate trong SPA
  */
 watchUrlChange(() => {
-  console.log('[TOC] URL thay đổi thành:', window.location.href)
-
   try {
     // Dừng tất cả operations đang chạy để tránh conflicts
     stopTOCObserver()
-
-    // Reset platform factory
     platformFactory.reset()
 
     // Clear TOC data cũ

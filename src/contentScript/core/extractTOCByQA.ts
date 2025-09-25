@@ -22,10 +22,6 @@ export function extractTOCByQA(): QAGroup[] {
   try {
     // Extract TOC sử dụng platform-specific logic
     const result = platform.extractTOC()
-
-    console.log(
-      `[TOC] Extract thành công ${result.length} TOC groups từ ${platformFactory.getCurrentPlatformType()}`,
-    )
     return result
   } catch (error) {
     console.error('[TOC] Lỗi khi extract TOC:', error)

@@ -17,7 +17,7 @@ export class ChatGPTPlatform extends BaseChatPlatform {
    */
   extractTOC(): QAGroup[] {
     const result: QAGroup[] = []
-    const turns = Array.from(document.querySelectorAll('div.group\\/conversation-turn'))
+    const turns = Array.from(document.querySelectorAll('article[data-turn]'))
     let tocIndex = 0
 
     // Duyệt qua các conversation turns theo cặp (user + assistant)

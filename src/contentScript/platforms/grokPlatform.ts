@@ -31,6 +31,7 @@ export class GrokPlatform extends BaseChatPlatform {
       const userElement = userTurn.querySelector('.message-bubble .whitespace-pre-wrap');
       const assistantElement = assistantTurn.querySelector('.response-content-markdown');
 
+      console.log('[TOC] Đã tìm thấy user/assistant elements:', { userElement, assistantElement });
       if (!userElement || !assistantElement) continue;
 
       // Extract question từ user message
@@ -39,6 +40,7 @@ export class GrokPlatform extends BaseChatPlatform {
       // Extract headings từ assistant response
       const headings = this.extractHeadingsFromAssistantResponse(assistantTurn, tocIndex);
 
+      console.log('[TOC] Extracted headings from Grok assistant response:', headings);
       if (headings.headings.length > 0) {
         result.push({ question, headings: headings.headings });
         tocIndex = headings.nextIndex;

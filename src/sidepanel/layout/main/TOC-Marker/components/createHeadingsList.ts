@@ -1,3 +1,4 @@
+import { TOCHeading } from "src/types/toc.types";
 import { handleHeadingClick } from "../events/handleHeadingClick";
 
 export function createHeadingsList(headings: TOCHeading[]): HTMLUListElement {

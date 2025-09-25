@@ -40,8 +40,6 @@ export function observeTOCUpdates() {
     childList: true, // Monitor thêm/xóa child elements
     subtree: true, // Monitor tất cả descendants
   })
-
-  console.log('[TOC] Bắt đầu observe DOM changes')
 }
 
 /**
@@ -53,13 +51,11 @@ export function stopTOCObserver() {
   if (currentObserver) {
     currentObserver.disconnect()
     currentObserver = null
-    console.log('[TOC] Đã dừng TOC observer')
   }
 
   // Cancel pending extraction
   if (currentDebounceTimer) {
     clearTimeout(currentDebounceTimer)
     currentDebounceTimer = null
-    console.log('[TOC] Đã hủy pending TOC extraction')
   }
 }

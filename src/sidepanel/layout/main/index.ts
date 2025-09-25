@@ -1,5 +1,6 @@
 import { tocState } from '@sidepanel/state/tocState';
 import { createQuestionGroup } from './TOC-Marker/components';
+import { QAGroup } from '../../../types/toc.types'
 
 const HEADER_MARGIN_OFFSET = 10;
 const SURVEY_MARGIN_OFFSET = 30;

@@ -16,11 +16,11 @@ export default defineConfig({
     sourcemap: false,
     minify: 'terser',
     terserOptions: {
-      compress: { // Bỏ ghi chú compress
-        drop_console: true,
-        drop_debugger: true,
-        pure_funcs: ['console.log', 'console.warn', 'console.error'], // loại trừ cả khi console còn sót
-      },
+      // compress: { // Bỏ ghi chú compress
+      //   drop_console: true,
+      //   drop_debugger: true,
+      //   pure_funcs: ['console.log', 'console.warn', 'console.error'], // loại trừ cả khi console còn sót
+      // },
       mangle: {
         toplevel: true,
         properties: {
